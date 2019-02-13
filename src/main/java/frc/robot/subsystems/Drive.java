@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -24,22 +25,50 @@ public class Drive extends Subsystem {
   WPI_TalonSRX frontLeft, frontRight, backLeft, backRight;
   SpeedControllerGroup left, right;
   DifferentialDrive drive;
+  DoubleSolenoid leftGearShifter, rightGearShifter;
+  public static final int FULL_SPEED = 0;
+  public static final int SLOW_SPEED = 1;
 
   public Drive(){
     frontLeft = new WPI_TalonSRX(RobotMap.FRONT_LEFT_DRIVE_MOTOR);
     backLeft = new WPI_TalonSRX(RobotMap.BACK_LEFT_DRIVE_MOTOR);
     frontRight = new WPI_TalonSRX(RobotMap.FRONT_RIGHT_DRIVE_MOTOR);
     backRight = new WPI_TalonSRX(RobotMap.BACK_RIGHT_DRIVE_MOTOR);
-
+    //finish creating all TalonSRX objects
     left = new SpeedControllerGroup(frontLeft, backLeft);
     right = new SpeedControllerGroup(frontRight, backRight);
-
+    //group speed controllers into speedcontrollergroup objects
     drive = new DifferentialDrive(left, right);
+    //create drive object
+    leftGearShifter = new DoubleSolenoid(RobotMap.LEFT_SHIFTER_FORWARD, RobotMap.LEFT_SHIFTER_REVERSE);
+    rightGearShifter = new DoubleSolenoid(RobotMap.RIGHT_SHIFTER_FORWARD, RobotMap.RIGHT_SHIFTER_REVERSE);
+    //finish declaring the shifter solenoids
+  }
+
+  public void setSpeed(int speedValue){
+    switch(speedValue){
+      case FULL_SPEED:
+        fullSpeed();
+      break;
+      case SLOW_SPEED:
+        slowSpeed();
+      break;
+    }
+  }
+
+  private void fullSpeed(){
+    leftGearShifter.set(DoubleSolenoid.Value.kForward);
+    rightGearShifter.set(DoubleSolenoid.Value.kForward);
+  }
+  private void slowSpeed(){
+    leftGearShifter.set(DoubleSolenoid.Value.kReverse);
+    rightGearShifter.set(DoubleSolenoid.Value.kReverse);
   }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     setDefaultCommand(new ArcadeDrive(drive));
+    //set the subsystem to arcade drive unless told otherwise
   }
 }

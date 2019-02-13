@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.OI;
 import frc.robot.Robot;
+import frc.robot.subsystems.Drive;
 
 public class ArcadeDrive extends Command {
   DifferentialDrive drive;
@@ -30,6 +31,14 @@ public class ArcadeDrive extends Command {
   @Override
   protected void execute() {
     drive.arcadeDrive(OI.driveStick.getRawAxis(0), OI.driveStick.getRawAxis(1));
+    switch(OI.driveStick.getPOV()){
+      case 0://up on the dpad
+        Robot.drive.setSpeed(Drive.FULL_SPEED);//go full speed
+      break;
+      case 180://down on the dpad
+        Robot.drive.setSpeed(Drive.SLOW_SPEED);//go slow speed
+      break;
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
