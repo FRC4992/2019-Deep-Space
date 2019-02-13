@@ -7,36 +7,34 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.SetElevatorHeight;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-  //// CREATING BUTTONS
-  // One type of button is a joystick button which is any button on a
-  //// joystick.
-  // You create one by telling it which joystick it's on and which button
-  // number it is.
-  // Joystick stick = new Joystick(port);
-  // Button button = new JoystickButton(stick, buttonNumber);
+ public static Joystick controlPanelJoystick = new Joystick(RobotMap.CONTROL_PANEL_ID);
+ Button hatchLevel1 = new JoystickButton(controlPanelJoystick, 1);
+ Button hatchLevel2 = new JoystickButton(controlPanelJoystick, 2);
+ Button hatchLevel3 = new JoystickButton(controlPanelJoystick, 3);
+ Button cargoLevel1 = new JoystickButton(controlPanelJoystick, 4);
+ Button cargoLevel2 = new JoystickButton(controlPanelJoystick, 6);
+ Button cargoLevel3 = new JoystickButton(controlPanelJoystick, 7);
+ Button cargoLevelCargoship = new JoystickButton(controlPanelJoystick, 8);
+ //declare all elevator buttons
 
-  // There are a few additional built in buttons you can use. Additionally,
-  // by subclassing Button you can create custom triggers and bind those to
-  // commands the same as any other Button.
-
-  //// TRIGGERING COMMANDS WITH BUTTONS
-  // Once you have a button, it's trivial to bind it to a button in one of
-  // three ways:
-
-  // Start the command when the button is pressed and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenPressed(new ExampleCommand());
-
-  // Run the command while the button is being held down and interrupt it once
-  // the button is released.
-  // button.whileHeld(new ExampleCommand());
-
-  // Start the command when the button is released and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenReleased(new ExampleCommand());
+ public OI(){
+   hatchLevel1.whenPressed(new SetElevatorHeight(RobotMap.HATCH_LEVEL_1));
+   hatchLevel2.whenPressed(new SetElevatorHeight(RobotMap.HATCH_LEVEL_1));
+   hatchLevel3.whenPressed(new SetElevatorHeight(RobotMap.HATCH_LEVEL_1));
+   cargoLevel1.whenPressed(new SetElevatorHeight(RobotMap.CARGO_LEVEL_1));
+   cargoLevel2.whenPressed(new SetElevatorHeight(RobotMap.CARGO_LEVEL_1));
+   cargoLevel3.whenPressed(new SetElevatorHeight(RobotMap.CARGO_LEVEL_1));
+   cargoLevelCargoship.whenPressed(new SetElevatorHeight(RobotMap.CARGO_LEVEL_CARGOSHIP));
+ }
+ 
 }
