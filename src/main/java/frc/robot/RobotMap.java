@@ -17,4 +17,11 @@ public class RobotMap {
   public static final int
   DRIVE_JOYSTICK_ID = 0
   ;
+
+  public static final int
+    HATCH_TOP_FORWARD = 0,
+    HATCH_TOP_REVERSE = 1,
+    HATCH_BOTTOM_FORWARD = 2,
+    HATCH_BOTTOM_REVERSE = 3
+    ;
 }
