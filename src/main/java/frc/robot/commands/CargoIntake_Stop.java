@@ -14,7 +14,7 @@ public class CargoIntake_Stop extends Command {
   public CargoIntake_Stop() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.cargoIntake)
+    requires(Robot.cargoIntake);
   }
 
   // Called just before this Command runs the first time
