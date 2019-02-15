@@ -28,4 +28,9 @@ public class RobotMap {
   ;
 
   public static final int DRIVE_JOYSTICK_ID = 0;//joystick for the main xbox controller
+  public static final int
+  LEFT_LINE_SENSOR_ID = 0,
+  CENTER_LINE_SENSOR_ID = 1,
+  RIGHT_LINE_SENSOR_ID = 2
+  ;
 }
