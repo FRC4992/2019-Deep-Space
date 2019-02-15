@@ -25,7 +25,9 @@ public class ShootHatch extends Command {
   @Override
   protected void initialize() {
     startTime = System.currentTimeMillis();
-    Robot.hatchShooter.extend();
+    if(Robot.hatchShooter.getDistance()<24){
+      Robot.hatchShooter.extend();
+    } 
   }
 
   // Called repeatedly when this Command is scheduled to run
