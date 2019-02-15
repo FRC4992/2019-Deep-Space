@@ -1,0 +1,62 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+
+package frc.robot.subsystems;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
+
+/**
+ * Add your docs here.
+ */
+public class Lift extends Subsystem {
+  // Put methods for controlling this subsystem
+  // here. Call these from Commands.
+  WPI_TalonSRX master,slave;
+  public Lift() {
+    master = new WPI_TalonSRX(RobotMap.LIFT_LEFT_MOTOR_ID);
+    slave = new WPI_TalonSRX(RobotMap.LIFT_RIGHT_MOTOR_ID);
+    //create talons
+    master.configFactoryDefault();
+    slave.configFactoryDefault();
+    //reset the talons
+    master.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+    //set the encoder type for the motor
+    master.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, RobotMap.TALON_TIMEOUT_MS);
+    master.configNominalOutputForward(0,RobotMap.TALON_TIMEOUT_MS);//set peak and minimum outputs in both directions
+    master.configNominalOutputReverse(0,RobotMap.TALON_TIMEOUT_MS);
+    master.configPeakOutputForward(1,RobotMap.TALON_TIMEOUT_MS);
+    master.configPeakOutputReverse(1,RobotMap.TALON_TIMEOUT_MS);
+
+    master.config_kP(RobotMap.TALON_SLOT_ID, 0.2,RobotMap.TALON_TIMEOUT_MS);//set pidf values
+    master.config_kI(RobotMap.TALON_SLOT_ID, 0,RobotMap.TALON_TIMEOUT_MS);
+    master.config_kD(RobotMap.TALON_SLOT_ID, 0,RobotMap.TALON_TIMEOUT_MS);
+    master.config_kF(RobotMap.TALON_SLOT_ID, 0,RobotMap.TALON_TIMEOUT_MS);
+
+    master.configMotionAcceleration(RobotMap.LIFT_ACCELERATION);
+    master.configMotionCruiseVelocity(RobotMap.LIFT_MAX_VELOCITY);    
+    master.setSelectedSensorPosition(0);
+    //finish initializing talon pid + motion magic settings
+    slave.follow(master);
+    //tell the right to follow the left
+  }
+
+  public void setTicks(int ticks){
+    master.set(ControlMode.MotionMagic,ticks);
+  }
+
+  @Override
+  public void initDefaultCommand() {
+    // Set the default command for a subsystem here.
+    // setDefaultCommand(new MySpecialCommand());
+  }
+}

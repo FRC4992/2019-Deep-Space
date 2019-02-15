@@ -14,7 +14,21 @@ package frc.robot;
  * floating around.
  */
 public class RobotMap {
+  public static final int DRIVE_JOYSTICK_ID = 0;
+  public static final int 
+    TALON_SLOT_ID = 0,
+    TALON_TIMEOUT_MS = 30
+  ;
   public static final int
-  DRIVE_JOYSTICK_ID = 0
+    LIFT_LEFT_MOTOR_ID = 20,
+    LIFT_RIGHT_MOTOR_ID = 21,
+    //finish declaring LIFT motor ids
+
+    LIFT_ACCELERATION = 500,
+    LIFT_MAX_VELOCITY = 1000,
+    //set motion magic values
+
+    LIFT_GROUND_HEIGHT = 100,
+    LIFT_RAISED_HEIGHT = 1000
   ;
 }
