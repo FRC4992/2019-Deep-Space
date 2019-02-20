@@ -30,7 +30,7 @@ public class ArcadeDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    drive.arcadeDrive(OI.driveStick.getRawAxis(0), OI.driveStick.getRawAxis(1));
+    drive.arcadeDrive(-OI.driveStick.getRawAxis(1), OI.driveStick.getRawAxis(0));
     switch(OI.driveStick.getPOV()){
       case 0://up on the dpad
         Robot.drive.setSpeed(Drive.FULL_SPEED);//go full speed
