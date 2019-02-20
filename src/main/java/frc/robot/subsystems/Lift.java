@@ -47,7 +47,7 @@ public class Lift extends Subsystem {
     master.configMotionCruiseVelocity(RobotMap.LIFT_MAX_VELOCITY);    
     master.setSelectedSensorPosition(0);
     //finish initializing talon pid + motion magic settings
-    slave.follow(master);
+    // slave.follow(master);
     //tell the right to follow the left
   }
 

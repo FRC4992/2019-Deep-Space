@@ -42,6 +42,7 @@ public class ManualLiftControl extends Command {
       System.out.println("0");
     }
     Robot.lift.master.set(ControlMode.PercentOutput,speed);
+    Robot.lift.slave.set(ControlMode.PercentOutput,speed);
     System.out.println("Speed: "+speed+ ", %: "+ Robot.lift.master.getMotorOutputPercent());
   }
 
