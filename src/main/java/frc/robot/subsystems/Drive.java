@@ -25,7 +25,8 @@ public class Drive extends Subsystem {
   WPI_TalonSRX frontLeft, frontRight, backLeft, backRight;
   SpeedControllerGroup left, right;
   DifferentialDrive drive;
-  DoubleSolenoid leftGearShifter, rightGearShifter;
+  // DoubleSolenoid leftGearShifter, rightGearShifter;
+  DoubleSolenoid shifter;
   public static final int FULL_SPEED = 0;
   public static final int SLOW_SPEED = 1;
 
@@ -40,8 +41,9 @@ public class Drive extends Subsystem {
     //group speed controllers into speedcontrollergroup objects
     drive = new DifferentialDrive(left, right);
     //create drive object
-    leftGearShifter = new DoubleSolenoid(RobotMap.LEFT_SHIFTER_FORWARD, RobotMap.LEFT_SHIFTER_REVERSE);
-    rightGearShifter = new DoubleSolenoid(RobotMap.RIGHT_SHIFTER_FORWARD, RobotMap.RIGHT_SHIFTER_REVERSE);
+    // leftGearShifter = new DoubleSolenoid(RobotMap.LEFT_SHIFTER_FORWARD, RobotMap.LEFT_SHIFTER_REVERSE);
+    // rightGearShifter = new DoubleSolenoid(RobotMap.RIGHT_SHIFTER_FORWARD, RobotMap.RIGHT_SHIFTER_REVERSE);
+    shifter = new DoubleSolenoid(RobotMap.SHIFTER_FORWARD, RobotMap.SHITER_REVERSE);
     //finish declaring the shifter solenoids
   }
 
@@ -57,12 +59,14 @@ public class Drive extends Subsystem {
   }
 
   private void fullSpeed(){
-    leftGearShifter.set(DoubleSolenoid.Value.kForward);
-    rightGearShifter.set(DoubleSolenoid.Value.kForward);
+    // leftGearShifter.set(DoubleSolenoid.Value.kForward);
+    // rightGearShifter.set(DoubleSolenoid.Value.kForward);
+    shifter.set(DoubleSolenoid.Value.kForward);
   }
   private void slowSpeed(){
-    leftGearShifter.set(DoubleSolenoid.Value.kReverse);
-    rightGearShifter.set(DoubleSolenoid.Value.kReverse);
+    // leftGearShifter.set(DoubleSolenoid.Value.kReverse);
+    // rightGearShifter.set(DoubleSolenoid.Value.kReverse);
+    shifter.set(DoubleSolenoid.Value.kReverse);
   }
 
   @Override

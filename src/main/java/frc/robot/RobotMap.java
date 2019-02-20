@@ -20,10 +20,12 @@ public class RobotMap {
   FRONT_RIGHT_DRIVE_MOTOR = 2,
   BACK_RIGHT_DRIVE_MOTOR = 3,
   //Finish delcaring all drive-train talon IDs
-  LEFT_SHIFTER_FORWARD = 0,
-  LEFT_SHIFTER_REVERSE = 1,
-  RIGHT_SHIFTER_FORWARD = 2,
-  RIGHT_SHIFTER_REVERSE = 3
+  // LEFT_SHIFTER_FORWARD = 0,
+  // LEFT_SHIFTER_REVERSE = 1,
+  // // RIGHT_SHIFTER_FORWARD = 2,
+  // RIGHT_SHIFTER_REVERSE = 3
+  SHIFTER_FORWARD = 0,
+  SHITER_REVERSE = 1
   //finish declaring all drive-train solenoid IDs
   ;
 
