@@ -36,8 +36,8 @@ public class CargoShooter_Start extends Command {
       new CargoShooter_Stop();
     }else{
       //shoot
-      Robot.cargoShooter.leftMotor.set(1);
-      Robot.cargoShooter.rightMotor.set(-1);
+      Robot.cargoShooter.leftMotor.set(.25);
+      Robot.cargoShooter.rightMotor.set(-.25);
     }
     
   }
