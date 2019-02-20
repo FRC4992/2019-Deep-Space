@@ -7,8 +7,11 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
@@ -16,7 +19,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class CargoTransporter extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public VictorSP cargoTransportMotor = new VictorSP(0);
+  public VictorSPX cargoTransportMotor = new VictorSPX(RobotMap.CONVEYOR_MOTOR_ID);
   
 
   @Override

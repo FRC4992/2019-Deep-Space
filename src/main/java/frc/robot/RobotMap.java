@@ -17,4 +17,5 @@ public class RobotMap {
   public static final int
   DRIVE_JOYSTICK_ID = 0
   ;
+  public static final int CONVEYOR_MOTOR_ID = 20;
 }
