@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -18,9 +19,10 @@ import frc.robot.RobotMap;
 public class CargoIntake extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public WPI_TalonSRX motor;
+  public VictorSPX motor;
   public CargoIntake(){
-    motor = new WPI_TalonSRX(RobotMap.CARGO_INTAKE_MOTOR_ID);
+    // motor = new WPI_TalonSRX(RobotMap.CARGO_INTAKE_MOTOR_ID);
+    motor = new VictorSPX(RobotMap.CARGO_INTAKE_MOTOR_ID);
   }
 
   @Override
