@@ -28,8 +28,8 @@ public class RobotMap {
     CARGO_LEVEL_2 = CARGO_LEVEL_CARGOSHIP,
     CARGO_LEVEL_3 = 1000,
     //finish declaring the encoder heights for the elevator
-    ELEVATOR_LEFT_MOTOR_ID = 20,
-    ELEVATOR_RIGHT_MOTOR_ID = 21,
+    ELEVATOR_LEFT_MOTOR_ID = 51,
+    ELEVATOR_RIGHT_MOTOR_ID = 50,
     //finish declaring elevator motor ids
 
     ELEVATOR_ACCELERATION = 500,

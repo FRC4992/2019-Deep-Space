@@ -18,6 +18,7 @@ import frc.robot.commands.SetElevatorHeight;
  */
 public class OI {
  public static Joystick controlPanelJoystick = new Joystick(RobotMap.CONTROL_PANEL_ID);
+ public static Joystick driveStick = new Joystick(0);
  Button hatchLevel1 = new JoystickButton(controlPanelJoystick, 1);
  Button hatchLevel2 = new JoystickButton(controlPanelJoystick, 2);
  Button hatchLevel3 = new JoystickButton(controlPanelJoystick, 3);
