@@ -20,8 +20,8 @@ public class RobotMap {
     TALON_TIMEOUT_MS = 30
   ;
   public static final int
-    LIFT_LEFT_MOTOR_ID = 20,
-    LIFT_RIGHT_MOTOR_ID = 21,
+    LIFT_LEFT_MOTOR_ID = 40,
+    LIFT_RIGHT_MOTOR_ID = 41,
     //finish declaring LIFT motor ids
 
     LIFT_ACCELERATION = 500,

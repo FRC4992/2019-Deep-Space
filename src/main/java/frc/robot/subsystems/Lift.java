@@ -14,6 +14,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.ManualLiftControl;
 
 /**
  * Add your docs here.
@@ -21,7 +22,7 @@ import frc.robot.RobotMap;
 public class Lift extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  WPI_TalonSRX master,slave;
+  public WPI_TalonSRX master,slave;
   public Lift() {
     master = new WPI_TalonSRX(RobotMap.LIFT_LEFT_MOTOR_ID);
     slave = new WPI_TalonSRX(RobotMap.LIFT_RIGHT_MOTOR_ID);
@@ -58,5 +59,6 @@ public class Lift extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new ManualLiftControl());
   }
 }
