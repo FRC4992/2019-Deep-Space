@@ -43,7 +43,7 @@ public class Drive extends Subsystem {
     //create drive object
     // leftGearShifter = new DoubleSolenoid(RobotMap.LEFT_SHIFTER_FORWARD, RobotMap.LEFT_SHIFTER_REVERSE);
     // rightGearShifter = new DoubleSolenoid(RobotMap.RIGHT_SHIFTER_FORWARD, RobotMap.RIGHT_SHIFTER_REVERSE);
-    shifter = new DoubleSolenoid(RobotMap.SHIFTER_FORWARD, RobotMap.SHITER_REVERSE);
+    shifter = new DoubleSolenoid(RobotMap.SHIFTER_FORWARD, RobotMap.SHIFTER_REVERSE);
     //finish declaring the shifter solenoids
   }
 

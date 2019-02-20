@@ -25,7 +25,7 @@ public class RobotMap {
   // // RIGHT_SHIFTER_FORWARD = 2,
   // RIGHT_SHIFTER_REVERSE = 3
   SHIFTER_FORWARD = 0,
-  SHITER_REVERSE = 1
+  SHIFTER_REVERSE = 1
   //finish declaring all drive-train solenoid IDs
   ;
 
