@@ -29,11 +29,8 @@ public class RobotMap {
   //finish declaring all drive-train solenoid IDs
   ;
 
-<<<<<<< HEAD
   public static final int DRIVE_JOYSTICK_ID = 0;//joystick for the main xbox controller
-=======
   public static final int
   CARGO_INTAKE_MOTOR_ID = 21
   ;
->>>>>>> cargointake
 }
