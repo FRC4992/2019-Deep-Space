@@ -8,6 +8,8 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -22,7 +24,7 @@ import frc.robot.commands.ArcadeDrive;
 public class Drive extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  WPI_TalonSRX frontLeft, frontRight, backLeft, backRight;
+  CANSparkMax frontLeft, frontRight, backLeft, backRight;
   SpeedControllerGroup left, right;
   DifferentialDrive drive;
   // DoubleSolenoid leftGearShifter, rightGearShifter;
@@ -31,10 +33,10 @@ public class Drive extends Subsystem {
   public static final int SLOW_SPEED = 1;
 
   public Drive(){
-    frontLeft = new WPI_TalonSRX(RobotMap.FRONT_LEFT_DRIVE_MOTOR);
-    backLeft = new WPI_TalonSRX(RobotMap.BACK_LEFT_DRIVE_MOTOR);
-    frontRight = new WPI_TalonSRX(RobotMap.FRONT_RIGHT_DRIVE_MOTOR);
-    backRight = new WPI_TalonSRX(RobotMap.BACK_RIGHT_DRIVE_MOTOR);
+    frontLeft = new CANSparkMax(RobotMap.FRONT_LEFT_DRIVE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
+    backLeft = new CANSparkMax(RobotMap.BACK_LEFT_DRIVE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
+    frontRight = new CANSparkMax(RobotMap.FRONT_RIGHT_DRIVE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
+    backRight = new CANSparkMax(RobotMap.BACK_RIGHT_DRIVE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
     //finish creating all TalonSRX objects
     left = new SpeedControllerGroup(frontLeft, backLeft);
     right = new SpeedControllerGroup(frontRight, backRight);
