@@ -38,4 +38,5 @@ public class RobotMap {
   CARGO_SHOOTER_LEFT_MOTOR = 30,
   CARGO_SHOOTER_RIGHT_MOTOR = 31;
   ;
+  public static final int CONVEYOR_MOTOR_ID = 20;
 }

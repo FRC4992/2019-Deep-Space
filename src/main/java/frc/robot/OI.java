@@ -14,6 +14,8 @@ import frc.robot.commands.CargoIntake_Start;
 import frc.robot.commands.CargoIntake_Stop;
 import frc.robot.commands.CargoShooter_Start;
 import frc.robot.commands.CargoShooter_Stop;
+import frc.robot.commands.CargoTransporter_Stop;
+import frc.robot.commands.Cargo_Transporter_Start;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -21,15 +23,17 @@ import frc.robot.commands.CargoShooter_Stop;
  */
 public class OI {
   public static Joystick driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK_ID);
-  Button intakeButton = new JoystickButton(driveStick,2);
+  private Button intakeButton = new JoystickButton(driveStick,2);
   private Button cargoShooter = new JoystickButton(driveStick, 4);
+  private Button conveyorButton = new JoystickButton(driveStick,1);
   public OI(){
     intakeButton.whenPressed(new CargoIntake_Start());
     intakeButton.whenReleased(new CargoIntake_Stop());
 
     cargoShooter.whenPressed(new CargoShooter_Start());
     cargoShooter.whenReleased(new CargoShooter_Stop());
-  
 
+    conveyorButton.whenPressed(new Cargo_Transporter_Start());
+    conveyorButton.whenReleased(new CargoTransporter_Stop());
   }
 }
