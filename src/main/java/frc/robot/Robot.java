@@ -10,6 +10,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.Drive;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.CargoIntake;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,6 +24,7 @@ import frc.robot.subsystems.Drive;
 public class Robot extends TimedRobot {
   public static OI m_oi;
   public static Drive drive = new Drive();
+  public static CargoIntake cargoIntake = new CargoIntake();
 
   /**
    * This function is run when the robot is first started up and should be

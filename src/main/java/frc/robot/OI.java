@@ -8,6 +8,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.CargoIntake_Start;
+import frc.robot.commands.CargoIntake_Stop;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -15,4 +19,10 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public class OI {
   public static Joystick driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK_ID);
+  Button intakeButton = new JoystickButton(driveStick,2);
+
+  public OI(){
+    intakeButton.whenPressed(new CargoIntake_Start());
+    intakeButton.whenReleased(new CargoIntake_Stop());
+  }
 }
