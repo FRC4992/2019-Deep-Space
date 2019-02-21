@@ -33,4 +33,9 @@ public class RobotMap {
   public static final int
   CARGO_INTAKE_MOTOR_ID = 21
   ;
+
+  public static final int
+  CARGO_SHOOTER_LEFT_MOTOR = 30,
+  CARGO_SHOOTER_RIGHT_MOTOR = 31;
+  ;
 }

@@ -13,6 +13,7 @@ import frc.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.CargoIntake;
+import frc.robot.subsystems.CargoShooter;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,6 +26,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static Drive drive = new Drive();
   public static CargoIntake cargoIntake = new CargoIntake();
+  public static CargoShooter cargoShooter = new CargoShooter();
 
   /**
    * This function is run when the robot is first started up and should be
