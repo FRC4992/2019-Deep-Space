@@ -15,8 +15,8 @@ package frc.robot;
  */
 public class RobotMap {
   public static final int
-  BACK_RIGHT_DRIVE_MOTOR = 0,
-  FRONT_RIGHT_DRIVE_MOTOR = 1,
+  BACK_RIGHT_DRIVE_MOTOR = 1,
+  FRONT_RIGHT_DRIVE_MOTOR = 4,
   BACK_LEFT_DRIVE_MOTOR = 2,
   FRONT_LEFT_DRIVE_MOTOR = 3,
   //Finish delcaring all drive-train talon IDs
