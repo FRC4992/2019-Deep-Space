@@ -19,6 +19,7 @@ import frc.robot.subsystems.Drive;
  * project.
  */
 public class Robot extends TimedRobot {
+  
   public static OI m_oi;
   public static Drive drive = new Drive();
 
@@ -29,6 +30,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
+    drive.resetAngle();
   }
 
   /**

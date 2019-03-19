@@ -10,8 +10,12 @@ package frc.robot.subsystems;
 // import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -31,7 +35,9 @@ public class Drive extends Subsystem {
   DoubleSolenoid shifter;
   public static final int FULL_SPEED = 0;
   public static final int SLOW_SPEED = 1;
-
+  DigitalInput leftLine,centerLine,rightLine;
+  AHRS navx;
+  public boolean followingLine = false;
   public Drive(){
     frontLeft = new CANSparkMax(RobotMap.FRONT_LEFT_DRIVE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
     backLeft = new CANSparkMax(RobotMap.BACK_LEFT_DRIVE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
@@ -47,6 +53,11 @@ public class Drive extends Subsystem {
     // rightGearShifter = new DoubleSolenoid(RobotMap.RIGHT_SHIFTER_FORWARD, RobotMap.RIGHT_SHIFTER_REVERSE);
     shifter = new DoubleSolenoid(RobotMap.SHIFTER_FORWARD, RobotMap.SHIFTER_REVERSE);
     //finish declaring the shifter solenoids
+    leftLine = new DigitalInput(RobotMap.LEFT_LINE_SENSOR_ID);
+    centerLine = new DigitalInput(RobotMap.CENTER_LINE_SENSOR_ID);
+    rightLine = new DigitalInput(RobotMap.RIGHT_LINE_SENSOR_ID);
+    //finish declaring line sensors
+    navx = new AHRS(SPI.Port.kMXP);
   }
 
   public void setSpeed(int speedValue){
@@ -58,6 +69,56 @@ public class Drive extends Subsystem {
         slowSpeed();
       break;
     }
+  }
+
+  public boolean getLeftSensor(){
+    return leftLine.get();
+  }
+  public boolean getCenterSensor(){
+    return centerLine.get();
+  }
+  public boolean getRightSensor(){
+    return rightLine.get();
+  }
+
+  public int getLinePos(){
+    /**
+     * returns an integer value which expresses the line position
+     * leftSensor = 1, centerSensor = 3, rightSensor = 5
+     * left+center = 2, center+right = 4
+     * no sensors = -1
+     */
+    if(!getLeftSensor() && !getCenterSensor() && !getRightSensor()){
+      return -1;
+    }else if(getLeftSensor() && !getCenterSensor() && !getRightSensor()){
+        return 1;
+    }else if(!getLeftSensor() && getCenterSensor() && !getRightSensor()){
+        return 3;
+    }else if(!getLeftSensor() && !getCenterSensor() && getRightSensor()){
+        return 5;
+    }else if(getLeftSensor() && getCenterSensor() && !getRightSensor()){
+        return 2;
+    }else if(!getLeftSensor() && getCenterSensor() && getRightSensor()){
+        return 4;
+    }else{
+      return -1;
+    }
+  }
+
+  public double getGyroAngle(){
+    return navx.getAngle();
+  }
+  public void resetAngle(){
+    navx.reset();
+  }
+  public void stop(){
+    drive.arcadeDrive(0, 0);
+  }
+  public void driveForward(double speed){
+    drive.arcadeDrive(0, speed);
+  }
+  public void setSpeed(double xSpeed, double zRotation){
+    drive.arcadeDrive(xSpeed, zRotation);
   }
 
   private void fullSpeed(){
