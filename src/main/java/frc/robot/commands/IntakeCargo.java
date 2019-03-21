@@ -20,7 +20,7 @@ public class IntakeCargo extends CommandGroup {
     addParallel(new CargoShooter_Start());//start the elevator shooter
     addSequential(new CargoTransporter_Stop());//once the elevator shooter stops, stop the transporter
     addParallel(new CargoIntake_Stop());//stop the intake motors
-    //TODO: bring lift back up (parallel)
+    
 
     // Add Commands here:
     // e.g. addSequential(new Command1());

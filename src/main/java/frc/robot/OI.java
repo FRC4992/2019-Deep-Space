@@ -24,8 +24,8 @@ import frc.robot.commands.IntakeCargo;
  */
 public class OI {
   public static Joystick driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK_ID);
-  private Button cargoShooter = new JoystickButton(driveStick, 3);//B button
-  private Button cargoIntake = new JoystickButton(driveStick,4);//Y button
+  private Button cargoShooter = new JoystickButton(driveStick, 4);//Y button
+  private Button cargoIntake = new JoystickButton(driveStick,3);//X button
   /*Used for manual control of cargo intake
     private Button conveyorButton = new JoystickButton(driveStick,1);
     private Button intakeButton = new JoystickButton(driveStick,2);
@@ -44,6 +44,7 @@ public class OI {
     cargoShooter.whenReleased(new CargoShooter_Stop());
     //cargo shooter buttons
     cargoIntake.whenPressed(new IntakeCargo());
+    //TODO: When released bring lift down
     //cargo intake button
   }
 }
