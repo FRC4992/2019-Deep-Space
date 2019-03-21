@@ -18,23 +18,20 @@ import frc.robot.RobotMap;
 public class Hatch extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  DoubleSolenoid topPiston, bottomPiston;
+  DoubleSolenoid piston;
   Ultrasonic ultrasonic;
   public Hatch(){
-    topPiston = new DoubleSolenoid(RobotMap.HATCH_TOP_FORWARD, RobotMap.HATCH_TOP_REVERSE);
-    bottomPiston = new DoubleSolenoid(RobotMap.HATCH_BOTTOM_FORWARD, RobotMap.HATCH_BOTTOM_REVERSE);
+    piston = new DoubleSolenoid(RobotMap.HATCH_FORWARD, RobotMap.HATCH_REVERSE);
     ultrasonic = new Ultrasonic(RobotMap.ULTRASONIC_TRIGGER_PIN, RobotMap.ULTRASONIC_ECHO_PIN);
     ultrasonic.setAutomaticMode(true);
     ultrasonic.setDistanceUnits(Ultrasonic.Unit.kInches);
   }
 
   public void extend(){
-    topPiston.set(DoubleSolenoid.Value.kForward);
-    bottomPiston.set(DoubleSolenoid.Value.kForward);
+    piston.set(DoubleSolenoid.Value.kForward);
   }
   public void retract(){
-    topPiston.set(DoubleSolenoid.Value.kReverse);
-    bottomPiston.set(DoubleSolenoid.Value.kReverse);
+    piston.set(DoubleSolenoid.Value.kReverse);
   }
 
   public double getDistance(){
