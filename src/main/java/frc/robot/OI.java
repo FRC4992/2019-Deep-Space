@@ -23,8 +23,8 @@ import frc.robot.commands.StopFollowingLine;
 public class OI {
   public static Joystick driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK_ID);
   public static Button followLineButton = new JoystickButton(driveStick,1);//A button
-  public static Button driveFullSpeed = new JoystickButton(driveStick, 5);//left bumper
-  public static Button driveSlowSpeed = new JoystickButton(driveStick, 6);//right bumper
+  public static Button driveSlowSpeed = new JoystickButton(driveStick, 5);//left bumper
+  public static Button driveFullSpeed = new JoystickButton(driveStick, 6);//right bumper
   public static Button toggleDirection = new JoystickButton(driveStick,8);//start button
   public OI(){
     driveFullSpeed.whenPressed(new SwitchDriveGear(Drive.FULL_SPEED));
