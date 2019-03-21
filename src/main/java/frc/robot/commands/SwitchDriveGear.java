@@ -8,43 +8,32 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import frc.robot.OI;
 import frc.robot.Robot;
-import frc.robot.subsystems.Drive;
 
-public class ArcadeDrive extends Command {
-  DifferentialDrive drive;
-  public ArcadeDrive(DifferentialDrive drive) {
+public class SwitchDriveGear extends Command {
+  int speedNum;
+  public SwitchDriveGear(int speedNum) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.drive);
-    this.drive = drive;
+    this.speedNum = speedNum;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.drive.setSpeed(speedNum);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    drive.arcadeDrive(-OI.driveStick.getRawAxis(1)*Robot.drive.directionMultiplier, OI.driveStick.getRawAxis(0));
-    switch(OI.driveStick.getPOV()){
-      case 0://up on the dpad
-        Robot.drive.setSpeed(Drive.FULL_SPEED);//go full speed
-      break;
-      case 180://down on the dpad
-        Robot.drive.setSpeed(Drive.SLOW_SPEED);//go slow speed
-      break;
-    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true

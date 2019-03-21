@@ -25,6 +25,7 @@ import frc.robot.subsystems.CargoTransporter;
  * project.
  */
 public class Robot extends TimedRobot {
+  
   public static OI m_oi;
   public static Drive drive = new Drive();
   public static CargoIntake cargoIntake = new CargoIntake();
@@ -39,6 +40,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_oi = new OI();
     CameraServer.getInstance().startAutomaticCapture();
+    drive.resetAngle();
   }
 
   /**
