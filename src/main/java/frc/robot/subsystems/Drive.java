@@ -38,6 +38,7 @@ public class Drive extends Subsystem {
   DigitalInput leftLine,centerLine,rightLine;
   AHRS navx;
   public boolean followingLine = false;
+  public int directionMultiplier = 1;
   public Drive(){
     frontLeft = new CANSparkMax(RobotMap.FRONT_LEFT_DRIVE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
     backLeft = new CANSparkMax(RobotMap.BACK_LEFT_DRIVE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
