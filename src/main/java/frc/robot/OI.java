@@ -28,6 +28,7 @@ import frc.robot.commands.StopFollowingLine;
  */
 public class OI {
   public static Joystick driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK_ID);
+
   private Button intakeButton = new JoystickButton(driveStick,2);
   private Button cargoShooter = new JoystickButton(driveStick, 4);
   private Button conveyorButton = new JoystickButton(driveStick,1);
