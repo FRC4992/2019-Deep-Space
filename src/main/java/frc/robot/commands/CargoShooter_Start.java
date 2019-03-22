@@ -32,6 +32,7 @@ public class CargoShooter_Start extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    System.out.println("running shooter");
     Robot.cargoShooter.updateSpikeCheckers();
     initialSpike = Robot.cargoShooter.initialSpikeChecker.didSpike() ? true:initialSpike;
     initialSpikePassed = (!Robot.cargoShooter.initialSpikeChecker.didSpike() && initialSpike);

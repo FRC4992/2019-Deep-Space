@@ -7,36 +7,59 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
+import frc.robot.subsystems.CargoIntake;
 
-public class IntakeCargo extends CommandGroup {
-  /**
-   * Add your docs here.
-   */
+public class IntakeCargo extends Command {
+  CargoShooter_Start shooterCommand;
+  boolean finished = false;
   public IntakeCargo() {
-    //TODO: Add lift to ground
-    addSequential(new Cargo_Transporter_Start());//start the transporter
-    addParallel(new CargoIntake_Start());//start the intake motors
-    addParallel(new CargoShooter_Start());//start the elevator shooter
-    addSequential(new CargoTransporter_Stop());//once the elevator shooter stops, stop the transporter
-    addParallel(new CargoIntake_Stop());//stop the intake motors
-    
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
+    requires(Robot.cargoIntake);
+    requires(Robot.cargoShooter);
+    requires(Robot.cargoTransporter);
 
-    // Add Commands here:
-    // e.g. addSequential(new Command1());
-    // addSequential(new Command2());
-    // these will run in order.
+    shooterCommand = new CargoShooter_Start();
+  }
 
-    // To run multiple commands at the same time,
-    // use addParallel()
-    // e.g. addParallel(new Command1());
-    // addSequential(new Command2());
-    // Command1 and Command2 will run in parallel.
+  // Called just before this Command runs the first time
+  @Override
+  protected void initialize() {
+    finished = false;
+    shooterCommand.start();
+    new Cargo_Transporter_Start();
+    new CargoIntake_Start();
+    //TODO: bring lift down
 
-    // A command group will require all of the subsystems that each member
-    // would require.
-    // e.g. if Command1 requires chassis, and Command2 requires arm,
-    // a CommandGroup containing them would require both the chassis and the
-    // arm.
+  }
+
+  // Called repeatedly when this Command is scheduled to run
+  @Override
+  protected void execute() {
+    if(shooterCommand.isFinished()){
+      //stop everything
+      new CargoTransporter_Stop();
+      new CargoIntake_Stop();
+      finished = true;
+    }
+  }
+
+  // Make this return true when this Command no longer needs to run execute()
+  @Override
+  protected boolean isFinished() {
+    return finished;
+  }
+
+  // Called once after isFinished returns true
+  @Override
+  protected void end() {
+  }
+
+  // Called when another command which requires one or more of the same
+  // subsystems is scheduled to run
+  @Override
+  protected void interrupted() {
   }
 }

@@ -10,24 +10,27 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class CargoShooter_Stop extends Command {
-  public CargoShooter_Stop() {
+public class CancelIntake extends Command {
+  public CancelIntake() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.cargoIntake);
     requires(Robot.cargoShooter);
+    requires(Robot.cargoTransporter);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    new CargoIntake_Stop();
+    new CargoShooter_Stop();
+    new CargoTransporter_Stop();
+    //TODO: bring lift up
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println("stopping shooter");
-    Robot.cargoShooter.leftMotor.set(0);
-    Robot.cargoShooter.rightMotor.set(0);
   }
 
   // Make this return true when this Command no longer needs to run execute()
