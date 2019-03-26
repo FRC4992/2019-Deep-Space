@@ -21,6 +21,7 @@ import frc.robot.commands.ToggleDirection;
 import frc.robot.subsystems.Drive;
 import frc.robot.commands.FollowLine;
 import frc.robot.commands.StopFollowingLine;
+import frc.robot.commands.ShootHatch;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -36,6 +37,8 @@ public class OI {
   public static Button driveSlowSpeed = new JoystickButton(driveStick, 5);//left bumper
   public static Button driveFullSpeed = new JoystickButton(driveStick, 6);//right bumper
   public static Button toggleDirection = new JoystickButton(driveStick,8);//start button
+
+  Button hatchButton = new JoystickButton(driveStick,4);//assign the hatch to Y
   public OI(){
     intakeButton.whenPressed(new CargoIntake_Start());
     intakeButton.whenReleased(new CargoIntake_Stop());
@@ -54,5 +57,8 @@ public class OI {
     //follow a line while the button is pressed
     toggleDirection.whenPressed(new ToggleDirection());
     //switch the direction the robot considers forward
+
+    hatchButton.whenPressed(new ShootHatch());//shoot the hatch when the button is pressed
+
   }
 }

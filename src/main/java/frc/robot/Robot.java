@@ -16,6 +16,9 @@ import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.CargoIntake;
 import frc.robot.subsystems.CargoShooter;
 import frc.robot.subsystems.CargoTransporter;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.Hatch;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,7 +34,7 @@ public class Robot extends TimedRobot {
   public static CargoIntake cargoIntake = new CargoIntake();
   public static CargoShooter cargoShooter = new CargoShooter();
   public static CargoTransporter cargoTransporter = new CargoTransporter();
-
+  public static Hatch hatchShooter = new Hatch();
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.

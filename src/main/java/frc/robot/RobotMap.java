@@ -44,4 +44,12 @@ public class RobotMap {
   CENTER_LINE_SENSOR_ID = 1,
   RIGHT_LINE_SENSOR_ID = 2
   ;
+
+  public static final int
+    HATCH_FORWARD = 3,
+    HATCH_REVERSE = 2,
+    //finish declaring all solenoid ids
+    ULTRASONIC_TRIGGER_PIN = 0,
+    ULTRASONIC_ECHO_PIN = 1
+    ;
 }
