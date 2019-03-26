@@ -27,6 +27,7 @@ public class SetElevatorHeight extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    System.out.println("Going to height: "+desiredHeight);
     Robot.elevator.setTicks(desiredHeight);
   }
 

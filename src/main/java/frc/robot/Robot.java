@@ -44,6 +44,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    System.out.println(elevator.master.getSelectedSensorPosition());
   }
 
   /**
@@ -94,7 +95,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
- 
+    
   }
 
   /**
@@ -103,6 +104,9 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    SmartDashboard.putNumber("Elevator Encoder", elevator.master.getSelectedSensorPosition());
+    elevator.updateSlave();
+    System.out.println(elevator.master.getSelectedSensorPosition());
   }
 
   /**

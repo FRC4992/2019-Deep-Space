@@ -20,19 +20,19 @@ public class RobotMap {
     TALON_TIMEOUT_MS = 30
   ;
   public static final int
-    HATCH_LEVEL_1 = 100,
-    HATCH_LEVEL_2 = 600,
-    HATCH_LEVL_3 = 1100,
-    CARGO_LEVEL_CARGOSHIP = 500,
-    CARGO_LEVEL_1 = 0,
+    HATCH_LEVEL_1 = 00,
+    HATCH_LEVEL_2 = 5000,
+    HATCH_LEVL_3 = 5000,
+    CARGO_LEVEL_CARGOSHIP = 5000,
+    CARGO_LEVEL_1 = 5000,
     CARGO_LEVEL_2 = CARGO_LEVEL_CARGOSHIP,
-    CARGO_LEVEL_3 = 1000,
+    CARGO_LEVEL_3 = 5000,
     //finish declaring the encoder heights for the elevator
-    ELEVATOR_LEFT_MOTOR_ID = 51,
-    ELEVATOR_RIGHT_MOTOR_ID = 50,
+    ELEVATOR_LEFT_MOTOR_ID = 50,
+    ELEVATOR_RIGHT_MOTOR_ID = 51,
     //finish declaring elevator motor ids
 
     ELEVATOR_ACCELERATION = 500,
-    ELEVATOR_MAX_VELOCITY = 1000;
+    ELEVATOR_MAX_VELOCITY = 500;
   ;
 }

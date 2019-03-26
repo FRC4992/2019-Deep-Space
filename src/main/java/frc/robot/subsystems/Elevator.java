@@ -27,18 +27,18 @@ public class Elevator extends Subsystem {
     master = new WPI_TalonSRX(RobotMap.ELEVATOR_LEFT_MOTOR_ID);
     slave = new WPI_TalonSRX(RobotMap.ELEVATOR_RIGHT_MOTOR_ID);
     //create talons
-    master.configFactoryDefault();
-    slave.configFactoryDefault();
+    // master.configFactoryDefault();
+    // slave.configFactoryDefault();
     //reset the talons
-    master.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+    master.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
     //set the encoder type for the motor
     master.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, RobotMap.TALON_TIMEOUT_MS);
     master.configNominalOutputForward(0,RobotMap.TALON_TIMEOUT_MS);//set peak and minimum outputs in both directions
     master.configNominalOutputReverse(0,RobotMap.TALON_TIMEOUT_MS);
-    master.configPeakOutputForward(1,RobotMap.TALON_TIMEOUT_MS);
-    master.configPeakOutputReverse(1,RobotMap.TALON_TIMEOUT_MS);
+    master.configPeakOutputForward(0.1,RobotMap.TALON_TIMEOUT_MS);
+    master.configPeakOutputReverse(-0.1,RobotMap.TALON_TIMEOUT_MS);
 
-    master.config_kP(RobotMap.TALON_SLOT_ID, 0.2,RobotMap.TALON_TIMEOUT_MS);//set pidf values
+    master.config_kP(RobotMap.TALON_SLOT_ID, 0.1,RobotMap.TALON_TIMEOUT_MS);//set pidf values
     master.config_kI(RobotMap.TALON_SLOT_ID, 0,RobotMap.TALON_TIMEOUT_MS);
     master.config_kD(RobotMap.TALON_SLOT_ID, 0,RobotMap.TALON_TIMEOUT_MS);
     master.config_kF(RobotMap.TALON_SLOT_ID, 0,RobotMap.TALON_TIMEOUT_MS);
@@ -46,8 +46,11 @@ public class Elevator extends Subsystem {
     master.configMotionAcceleration(RobotMap.ELEVATOR_ACCELERATION);
     master.configMotionCruiseVelocity(RobotMap.ELEVATOR_MAX_VELOCITY);    
     master.setSelectedSensorPosition(0);
+    master.setSensorPhase(true);
+    master.setInverted(false);
+    slave.setInverted(false);
     //finish initializing talon pid + motion magic settings
-    slave.follow(master);
+    // slave.follow(master);
     //tell the right to follow the left
   }
 
@@ -60,5 +63,9 @@ public class Elevator extends Subsystem {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
     // setDefaultCommand(new ManualElevatorControl());
+  }
+
+  public void updateSlave(){
+    slave.set(ControlMode.PercentOutput,master.getMotorOutputPercent());
   }
 }

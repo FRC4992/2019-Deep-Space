@@ -26,7 +26,14 @@ public class ManualElevatorControl extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.elevator.master.set(OI.driveStick.getRawAxis(1)/4);
+    if(OI.driveStick.getRawAxis(1)<0){
+      Robot.elevator.master.setInverted(true);
+      Robot.elevator.slave.setInverted(true);
+    }else{
+      Robot.elevator.master.setInverted(false);
+      Robot.elevator.slave.setInverted(false);
+    }
+    Robot.elevator.master.set(Math.abs(OI.driveStick.getRawAxis(1)/4));
   }
 
   // Make this return true when this Command no longer needs to run execute()

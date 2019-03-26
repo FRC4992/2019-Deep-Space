@@ -26,6 +26,8 @@ public class OI {
  Button cargoLevel2 = new JoystickButton(controlPanelJoystick, 6);
  Button cargoLevel3 = new JoystickButton(controlPanelJoystick, 7);
  Button cargoLevelCargoship = new JoystickButton(controlPanelJoystick, 8);
+
+ 
  //declare all elevator buttons
 
  public OI(){
