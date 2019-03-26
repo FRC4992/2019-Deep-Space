@@ -25,6 +25,7 @@ public class Hatch extends Subsystem {
     ultrasonic = new Ultrasonic(RobotMap.ULTRASONIC_TRIGGER_PIN, RobotMap.ULTRASONIC_ECHO_PIN);
     ultrasonic.setAutomaticMode(true);
     ultrasonic.setDistanceUnits(Ultrasonic.Unit.kInches);
+    retract();
   }
 
   public void extend(){
