@@ -22,7 +22,7 @@ public class RobotMap {
     HATCH_FORWARD = 3,
     HATCH_REVERSE = 2,
     //finish declaring all solenoid ids
-    ULTRASONIC_TRIGGER_PIN = 0,
-    ULTRASONIC_ECHO_PIN = 1
+    ULTRASONIC_TRIGGER_PIN = 9,
+    ULTRASONIC_ECHO_PIN = 8
     ;
 }

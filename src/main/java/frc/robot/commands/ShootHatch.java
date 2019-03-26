@@ -26,10 +26,10 @@ public class ShootHatch extends Command {
   protected void initialize() {
     finished = false;
     startTime = System.currentTimeMillis();
-    // if(Robot.hatchShooter.getDistance()<36){
+    if(Robot.hatchShooter.getDistance()<36){
       Robot.hatchShooter.extend();
       System.out.println("Shoot");
-    // } 
+    } 
   }
 
   // Called repeatedly when this Command is scheduled to run

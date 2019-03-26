@@ -19,7 +19,7 @@ public class Hatch extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   DoubleSolenoid piston;
-  Ultrasonic ultrasonic;
+  public Ultrasonic ultrasonic;
   public Hatch(){
     piston = new DoubleSolenoid(RobotMap.HATCH_FORWARD, RobotMap.HATCH_REVERSE);
     ultrasonic = new Ultrasonic(RobotMap.ULTRASONIC_TRIGGER_PIN, RobotMap.ULTRASONIC_ECHO_PIN);
