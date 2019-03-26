@@ -16,6 +16,9 @@ import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.CargoIntake;
 import frc.robot.subsystems.CargoShooter;
 import frc.robot.subsystems.CargoTransporter;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.Lift;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,6 +33,7 @@ public class Robot extends TimedRobot {
   public static CargoIntake cargoIntake = new CargoIntake();
   public static CargoShooter cargoShooter = new CargoShooter();
   public static CargoTransporter cargoTransporter = new CargoTransporter();
+  public static Lift lift = new Lift();
 
   /**
    * This function is run when the robot is first started up and should be
@@ -51,6 +55,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    System.out.println(lift.master.getSelectedSensorPosition());
   }
 
   /**
@@ -110,6 +115,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    lift.updateSlaves();
   }
 
   /**
