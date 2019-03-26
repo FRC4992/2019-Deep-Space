@@ -34,9 +34,9 @@ public class OI {
    hatchLevel1.whenPressed(new SetElevatorHeight(RobotMap.HATCH_LEVEL_1));
    hatchLevel2.whenPressed(new SetElevatorHeight(RobotMap.HATCH_LEVEL_1));
    hatchLevel3.whenPressed(new SetElevatorHeight(RobotMap.HATCH_LEVEL_1));
-   cargoLevel1.whenPressed(new SetElevatorHeight(RobotMap.CARGO_LEVEL_1));
+   cargoLevel1.whenPressed(new SetElevatorHeight(0));
    cargoLevel2.whenPressed(new SetElevatorHeight(RobotMap.CARGO_LEVEL_1));
-   cargoLevel3.whenPressed(new SetElevatorHeight(RobotMap.CARGO_LEVEL_1));
+   cargoLevel3.whenPressed(new SetElevatorHeight(5000));
    cargoLevelCargoship.whenPressed(new SetElevatorHeight(RobotMap.CARGO_LEVEL_CARGOSHIP));
  }
  

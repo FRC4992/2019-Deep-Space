@@ -46,9 +46,9 @@ public class Elevator extends Subsystem {
     master.configMotionAcceleration(RobotMap.ELEVATOR_ACCELERATION);
     master.configMotionCruiseVelocity(RobotMap.ELEVATOR_MAX_VELOCITY);    
     master.setSelectedSensorPosition(0);
-    master.setSensorPhase(true);
-    master.setInverted(false);
-    slave.setInverted(false);
+    master.setSensorPhase(false);
+    master.setInverted(true);
+    slave.setInverted(true);
     //finish initializing talon pid + motion magic settings
     // slave.follow(master);
     //tell the right to follow the left

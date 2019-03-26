@@ -24,7 +24,7 @@ public class RobotMap {
     HATCH_LEVEL_2 = 5000,
     HATCH_LEVL_3 = 5000,
     CARGO_LEVEL_CARGOSHIP = 5000,
-    CARGO_LEVEL_1 = 5000,
+    CARGO_LEVEL_1 = 0000,
     CARGO_LEVEL_2 = CARGO_LEVEL_CARGOSHIP,
     CARGO_LEVEL_3 = 5000,
     //finish declaring the encoder heights for the elevator
