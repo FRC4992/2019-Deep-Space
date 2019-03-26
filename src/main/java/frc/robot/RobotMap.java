@@ -15,10 +15,10 @@ package frc.robot;
  */
 public class RobotMap {
   public static final int
-  BACK_RIGHT_DRIVE_MOTOR = 1,
+  BACK_RIGHT_DRIVE_MOTOR = 2,
   FRONT_RIGHT_DRIVE_MOTOR = 4,
-  BACK_LEFT_DRIVE_MOTOR = 2,
-  FRONT_LEFT_DRIVE_MOTOR = 3,
+  BACK_LEFT_DRIVE_MOTOR = 3,
+  FRONT_LEFT_DRIVE_MOTOR = 1,
   //Finish delcaring all drive-train talon IDs
   // LEFT_SHIFTER_FORWARD = 0,
   // LEFT_SHIFTER_REVERSE = 1,
