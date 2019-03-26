@@ -20,15 +20,15 @@ public class RobotMap {
     TALON_TIMEOUT_MS = 30
   ;
   public static final int
-    LIFT_LEFT_MOTOR_ID = 40,
-    LIFT_RIGHT_MOTOR_ID = 41,
+    LIFT_LEFT_MOTOR_ID = 41,
+    LIFT_RIGHT_MOTOR_ID = 40,
     //finish declaring LIFT motor ids
 
     LIFT_ACCELERATION = 500,
-    LIFT_MAX_VELOCITY = 1000,
+    LIFT_MAX_VELOCITY = 500,
     //set motion magic values
 
-    LIFT_GROUND_HEIGHT = 100,
-    LIFT_RAISED_HEIGHT = 1000
+    LIFT_GROUND_HEIGHT = 280,
+    LIFT_RAISED_HEIGHT = 0
   ;
 }

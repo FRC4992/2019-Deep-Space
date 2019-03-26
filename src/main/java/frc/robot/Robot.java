@@ -44,6 +44,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    System.out.println(lift.master.getSelectedSensorPosition());
   }
 
   /**
@@ -103,6 +104,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    lift.updateSlaves();
   }
 
   /**

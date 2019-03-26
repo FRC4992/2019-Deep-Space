@@ -29,21 +29,15 @@ public class ManualLiftControl extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(OI.driveStick.getRawButton(5)){
-      speed = 0.5;
-      System.out.println("+");
-    }
-    if(OI.driveStick.getRawButton(6)){
-      speed = -0.5;
-      System.out.println("-");
-    }
-    if(!OI.driveStick.getRawButton(5) && !OI.driveStick.getRawButton(6)){
-      speed = 0;
-      System.out.println("0");
-    }
-    Robot.lift.master.set(ControlMode.PercentOutput,speed);
-    Robot.lift.slave.set(ControlMode.PercentOutput,speed);
-    System.out.println("Speed: "+speed+ ", %: "+ Robot.lift.master.getMotorOutputPercent());
+    // if(OI.driveStick.getRawAxis(1)<0){
+    //   Robot.lift.master.setInverted(true);
+    //   Robot.lift.slave.setInverted(true);
+    // }else{
+    //   Robot.lift.master.setInverted(false);
+    //   Robot.lift.slave.setInverted(false);
+    // }
+    // Robot.lift.master.set(Math.abs(OI.driveStick.getRawAxis(1))*1/10);
+    Robot.lift.master.set(OI.driveStick.getRawAxis(1)*1/10);
   }
 
   // Make this return true when this Command no longer needs to run execute()

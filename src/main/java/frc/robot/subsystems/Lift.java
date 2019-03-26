@@ -27,18 +27,18 @@ public class Lift extends Subsystem {
     master = new WPI_TalonSRX(RobotMap.LIFT_LEFT_MOTOR_ID);
     slave = new WPI_TalonSRX(RobotMap.LIFT_RIGHT_MOTOR_ID);
     //create talons
-    master.configFactoryDefault();
-    slave.configFactoryDefault();
+    // master.configFactoryDefault();
+    // slave.configFactoryDefault();
     //reset the talons
     master.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
     //set the encoder type for the motor
     master.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, RobotMap.TALON_TIMEOUT_MS);
     master.configNominalOutputForward(0,RobotMap.TALON_TIMEOUT_MS);//set peak and minimum outputs in both directions
     master.configNominalOutputReverse(0,RobotMap.TALON_TIMEOUT_MS);
-    master.configPeakOutputForward(1,RobotMap.TALON_TIMEOUT_MS);
-    master.configPeakOutputReverse(1,RobotMap.TALON_TIMEOUT_MS);
+    master.configPeakOutputForward(0.1,RobotMap.TALON_TIMEOUT_MS);
+    master.configPeakOutputReverse(-0.1,RobotMap.TALON_TIMEOUT_MS);
 
-    master.config_kP(RobotMap.TALON_SLOT_ID, 0.2,RobotMap.TALON_TIMEOUT_MS);//set pidf values
+    master.config_kP(RobotMap.TALON_SLOT_ID, 20,RobotMap.TALON_TIMEOUT_MS);//set pidf values
     master.config_kI(RobotMap.TALON_SLOT_ID, 0,RobotMap.TALON_TIMEOUT_MS);
     master.config_kD(RobotMap.TALON_SLOT_ID, 0,RobotMap.TALON_TIMEOUT_MS);
     master.config_kF(RobotMap.TALON_SLOT_ID, 0,RobotMap.TALON_TIMEOUT_MS);
@@ -53,6 +53,10 @@ public class Lift extends Subsystem {
 
   public void setTicks(int ticks){
     master.set(ControlMode.MotionMagic,ticks);
+  }
+
+  public void updateSlaves(){
+    slave.set(ControlMode.PercentOutput,master.getMotorOutputPercent());
   }
 
   @Override
