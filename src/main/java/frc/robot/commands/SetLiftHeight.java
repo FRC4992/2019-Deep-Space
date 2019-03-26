@@ -9,50 +9,31 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.CargoIntake;
 
-public class IntakeCargo extends Command {
-  CargoShooter_Start shooterCommand;
-  boolean finished = false;
-  public IntakeCargo() {
+public class SetLiftHeight extends Command {
+  int desHeight;
+  public SetLiftHeight(int desiredHeight) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.cargoIntake);
-    requires(Robot.cargoShooter);
-    requires(Robot.cargoTransporter);
-
-    shooterCommand = new CargoShooter_Start();
+    requires(Robot.lift);
+    desHeight = desiredHeight;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    finished = false;
-    shooterCommand.start();
-    new Cargo_Transporter_Start().start();
-    new CargoIntake_Start().start();
-    //TODO: bring lift down
-
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(shooterCommand.isFinished()){
-      //stop everything
-      new CargoTransporter_Stop().start();
-      new CargoIntake_Stop().start();
-      finished = true;
-    }else{
-      new Cargo_Transporter_Start().start();
-      new CargoIntake_Start().start();
-    }
+    Robot.lift.setTicks(desHeight);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return finished;
+    return true;
   }
 
   // Called once after isFinished returns true
