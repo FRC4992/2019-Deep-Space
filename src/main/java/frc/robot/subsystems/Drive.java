@@ -44,6 +44,12 @@ public class Drive extends Subsystem {
     backLeft = new CANSparkMax(RobotMap.BACK_LEFT_DRIVE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
     frontRight = new CANSparkMax(RobotMap.FRONT_RIGHT_DRIVE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
     backRight = new CANSparkMax(RobotMap.BACK_RIGHT_DRIVE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
+
+    frontLeft.setInverted(false);
+    backLeft.setInverted(false);
+    frontRight.setInverted(false);
+    backRight.setInverted(false);
+
     //finish creating all TalonSRX objects
     left = new SpeedControllerGroup(frontLeft, backLeft);
     right = new SpeedControllerGroup(frontRight, backRight);
