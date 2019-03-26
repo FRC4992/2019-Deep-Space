@@ -7,14 +7,18 @@
 
 package frc.robot.commands;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
 import frc.robot.Robot;
 
-public class CargoShooter_Stop extends Command {
-  public CargoShooter_Stop() {
+public class ManualLiftControl extends Command {
+  double speed = 0;
+  public ManualLiftControl() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.cargoShooter);
+    requires(Robot.lift);
   }
 
   // Called just before this Command runs the first time
@@ -25,15 +29,21 @@ public class CargoShooter_Stop extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println("stopping shooter");
-    Robot.cargoShooter.leftMotor.set(0);
-    Robot.cargoShooter.rightMotor.set(0);
+    // if(OI.driveStick.getRawAxis(1)<0){
+    //   Robot.lift.master.setInverted(true);
+    //   Robot.lift.slave.setInverted(true);
+    // }else{
+    //   Robot.lift.master.setInverted(false);
+    //   Robot.lift.slave.setInverted(false);
+    // }
+    // Robot.lift.master.set(Math.abs(OI.driveStick.getRawAxis(1))*1/10);
+    Robot.lift.master.set(OI.driveStick.getRawAxis(1)*1/10);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true

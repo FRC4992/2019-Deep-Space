@@ -14,6 +14,11 @@ package frc.robot;
  * floating around.
  */
 public class RobotMap {
+  public static final int DRIVE_JOYSTICK_ID = 0;
+  public static final int 
+    TALON_SLOT_ID = 0,
+    TALON_TIMEOUT_MS = 30
+  ;
   public static final int
   BACK_RIGHT_DRIVE_MOTOR = 2,
   FRONT_RIGHT_DRIVE_MOTOR = 4,
@@ -28,8 +33,6 @@ public class RobotMap {
   SHIFTER_REVERSE = 1
   //finish declaring all drive-train solenoid IDs
   ;
-
-  public static final int DRIVE_JOYSTICK_ID = 0;//joystick for the main xbox controller
   public static final int
   CARGO_INTAKE_MOTOR_ID = 21
   ;
@@ -38,7 +41,7 @@ public class RobotMap {
   CARGO_SHOOTER_LEFT_MOTOR = 30,
   CARGO_SHOOTER_RIGHT_MOTOR = 31;
   ;
-  public static final int CONVEYOR_MOTOR_ID = 20;
+
   public static final int
   LEFT_LINE_SENSOR_ID = 0,
   CENTER_LINE_SENSOR_ID = 1,
@@ -52,4 +55,20 @@ public class RobotMap {
     ULTRASONIC_TRIGGER_PIN = 9,
     ULTRASONIC_ECHO_PIN = 8
     ;
+  public static final int
+  
+    CONVEYOR_MOTOR_ID = 20,
+
+    LIFT_LEFT_MOTOR_ID = 41,
+    LIFT_RIGHT_MOTOR_ID = 40,
+    //finish declaring LIFT motor ids
+
+    LIFT_ACCELERATION = 500,
+    LIFT_MAX_VELOCITY = 500,
+    //set motion magic values
+
+    LIFT_GROUND_HEIGHT = 280,
+    LIFT_RAISED_HEIGHT = 0
+  ;
 }
+

@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.CancelIntake;
 import frc.robot.commands.CargoIntake_Start;
 import frc.robot.commands.CargoIntake_Stop;
 import frc.robot.commands.CargoShooter_Start;
@@ -22,6 +23,9 @@ import frc.robot.subsystems.Drive;
 import frc.robot.commands.FollowLine;
 import frc.robot.commands.StopFollowingLine;
 import frc.robot.commands.ShootHatch;
+import frc.robot.commands.IntakeCargo;
+import frc.robot.commands.StopIntake;
+import frc.robot.commands.ToggleLift;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -39,10 +43,23 @@ public class OI {
   public static Button toggleDirection = new JoystickButton(driveStick,8);//start button
 
   Button hatchButton = new JoystickButton(driveStick,4);//assign the hatch to Y
+  private Button cargoIntake = new JoystickButton(driveStick,3);//X button
+  private Button cancelAll = new JoystickButton(driveStick,7);//back button
+  Button liftButton = new JoystickButton(driveStick,2);
+  /*Used for manual control of cargo intake
+    private Button conveyorButton = new JoystickButton(driveStick,1);
+    private Button intakeButton = new JoystickButton(driveStick,2);
+  */
   public OI(){
-    intakeButton.whenPressed(new CargoIntake_Start());
-    intakeButton.whenReleased(new CargoIntake_Stop());
+    /*Used for manual control of cargo intake
+        conveyorButton.whenPressed(new Cargo_Transporter_Start());
+        conveyorButton.whenReleased(new CargoTransporter_Stop());
 
+        intakeButton.whenPressed(new CargoIntake_Start());
+        intakeButton.whenReleased(new CargoIntake_Stop());
+
+    */ 
+    //assign buttons their commands
     cargoShooter.whenPressed(new CargoShooter_Start());
     cargoShooter.whenReleased(new CargoShooter_Stop());
 
@@ -60,5 +77,12 @@ public class OI {
 
     hatchButton.whenPressed(new ShootHatch());//shoot the hatch when the button is pressed
 
+    //cargo shooter buttons
+    cargoIntake.whenPressed(new IntakeCargo());
+    cargoIntake.whenReleased(new StopIntake());
+    //TODO: When released bring lift down
+    cancelAll.whenPressed(new CancelIntake());
+    //cargo intake button
+    liftButton.toggleWhenPressed(new ToggleLift());
   }
 }

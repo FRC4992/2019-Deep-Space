@@ -10,11 +10,13 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class CargoShooter_Stop extends Command {
-  public CargoShooter_Stop() {
+public class SetLiftHeight extends Command {
+  int desHeight;
+  public SetLiftHeight(int desiredHeight) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.cargoShooter);
+    requires(Robot.lift);
+    desHeight = desiredHeight;
   }
 
   // Called just before this Command runs the first time
@@ -25,9 +27,7 @@ public class CargoShooter_Stop extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println("stopping shooter");
-    Robot.cargoShooter.leftMotor.set(0);
-    Robot.cargoShooter.rightMotor.set(0);
+    Robot.lift.setTicks(desHeight);
   }
 
   // Make this return true when this Command no longer needs to run execute()
