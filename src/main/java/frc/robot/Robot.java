@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -115,7 +117,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    
+    lift.master.setSelectedSensorPosition(0);
   }
 
   /**
@@ -128,6 +130,7 @@ public class Robot extends TimedRobot {
     // SmartDashboard.putNumber("Elevator Encoder", elevator.master.getSelectedSensorPosition());
     elevator.updateSlave();
     // System.out.println(elevator.master.getSelectedSensorPosition());
+    // System.out.println("Lift Value: "+lift.master.getSelectedSensorPosition());
   }
 
   /**
@@ -135,6 +138,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
-    new ManualLiftControl().start();
+    // new ManualLiftControl().start();
+    lift.master.set(OI.driveStick.getRawAxis(1)/4);
+    lift.updateSlaves();
+    cargoIntake.motor.set(ControlMode.PercentOutput,OI.driveStick.getRawAxis(5));
+    
   }
 }

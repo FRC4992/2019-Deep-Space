@@ -27,6 +27,7 @@ import frc.robot.commands.IntakeCargo;
 import frc.robot.commands.StopIntake;
 // import frc.robot.commands.ToggleLift;
 import frc.robot.commands.SetElevatorHeight;
+import frc.robot.commands.SetGamePiece;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -54,15 +55,23 @@ public class OI {
   */
 
 
-  public static Button lowHatch = new JoystickButton(driver2,4);
-	public static Button midHatch = new JoystickButton(driver2,7);
-	public static Button highHatch = new JoystickButton(driver2,9);
-	public static Button lowCargo = new JoystickButton(driver2,15);
-	public static Button midCargo = new JoystickButton(driver2,14);
-	public static Button highCargo = new JoystickButton(driver2,3);
-	public static Button shipCargo = new JoystickButton(driver2,6);
+  // public static Button lowHatch = new JoystickButton(driver2,4);
+	// public static Button midHatch = new JoystickButton(driver2,7);
+	// public static Button highHatch = new JoystickButton(driver2,9);
+	// public static Button lowCargo = new JoystickButton(driver2,15);
+	// public static Button midCargo = new JoystickButton(driver2,14);
+	// public static Button highCargo = new JoystickButton(driver2,3);
+  // public static Button shipCargo = new JoystickButton(driver2,6);
+  // public static Button secondaryShootHatch = new JoystickButton(driver2,16);
+  
+  public static Button lowElevator = new JoystickButton(driver2,1);
+  public static Button mediumElevator = new JoystickButton(driver2,3);
+  public static Button highElevator = new JoystickButton(driver2,4);
+  public static Button cargoShipCargoElevator = new JoystickButton(driver2,2);
+  public static Button cargoMode = new JoystickButton(driver2,5);
+  public static Button hatchMode = new JoystickButton(driver2,6);
 	
-	public static Button secondaryShootHatch = new JoystickButton(driver2,16);
+	
 
   public OI(){
     /*Used for manual control of cargo intake
@@ -73,6 +82,7 @@ public class OI {
         intakeButton.whenReleased(new CargoIntake_Stop());
 
     */ 
+    setGamePiece(OI.HATCH_OI);
     //assign buttons their commands
     cargoShooter.whenPressed(new CargoShooter_Start());
     cargoShooter.whenReleased(new CargoShooter_Stop());
@@ -96,22 +106,43 @@ public class OI {
     cargoIntake.whenReleased(new StopIntake());
     cancelAll.whenPressed(new CancelIntake());
     //cargo intake button
+
+    hatchMode.whenPressed(new SetGamePiece(OI.HATCH_OI));
+    cargoMode.whenPressed(new SetGamePiece(OI.CARGO_OI));
   
 
 
 
 
-    lowCargo.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_1));
-		midCargo.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_2));
-		highCargo.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_3));
+    // lowCargo.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_1));
+		// midCargo.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_2));
+		// highCargo.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_3));
 
-		lowHatch.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_1));
-		midHatch.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_2));
-		highHatch.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_3));
-		shipCargo.whenPressed(new SetElevatorHeight(RobotMap.CARGOSHIP_CARGO));
+		// lowHatch.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_1));
+		// midHatch.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_2));
+		// highHatch.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_3));
+		// shipCargo.whenPressed(new SetElevatorHeight(RobotMap.CARGOSHIP_CARGO));
 
 
 
+  }
+
+  public static final int HATCH_OI = 0;
+  public static final int CARGO_OI = 1;
+  public void setGamePiece(int gamePiece){
+    switch(gamePiece){
+      case HATCH_OI:
+        lowElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_1));
+        mediumElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_2));
+        highElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_3));
+      break;
+      case CARGO_OI:
+        lowElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_1));
+        mediumElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_2));
+        highElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_3));
+        cargoShipCargoElevator.whenPressed(new SetElevatorHeight(RobotMap.CARGOSHIP_CARGO));
+      break;
+    }
   }
  
 }

@@ -68,8 +68,8 @@ public class RobotMap {
     LIFT_MAX_VELOCITY = 500,
     //set motion magic values
 
-    LIFT_GROUND_HEIGHT = 280,
-    LIFT_RAISED_HEIGHT = 0,
+    LIFT_GROUND_HEIGHT = 100,//280
+    LIFT_RAISED_HEIGHT = 50,
     
     //finish declaring the encoder heights for the elevator
     ELEVATOR_LEFT_MOTOR_ID = 50,

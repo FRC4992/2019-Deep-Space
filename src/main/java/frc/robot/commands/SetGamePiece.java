@@ -8,27 +8,37 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.OI;
 import frc.robot.Robot;
 
-public class SetElevatorHeight extends Command {
-  int desiredHeight;
-  public SetElevatorHeight(int height) {
+public class SetGamePiece extends Command {
+  int gamePiece;
+  public SetGamePiece(int gamePiece) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.elevator);
-    desiredHeight = height;
+    this.gamePiece = gamePiece;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.m_oi.setGamePiece(gamePiece);
+    if(gamePiece == OI.CARGO_OI){
+      SmartDashboard.putBoolean("CARGO MODE", true);
+      SmartDashboard.putBoolean("HATCH MODE", false);
+    }else if(gamePiece == OI.HATCH_OI){
+      SmartDashboard.putBoolean("HATCH MODE", true);
+      SmartDashboard.putBoolean("CARGO MODE", false);
+    }else{
+      SmartDashboard.putBoolean("CARGO MODE", true);
+      SmartDashboard.putBoolean("HATCH MODE", true);
+    }
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println("Going to height: "+desiredHeight);
-    Robot.elevator.setTicks(desiredHeight);
   }
 
   // Make this return true when this Command no longer needs to run execute()
