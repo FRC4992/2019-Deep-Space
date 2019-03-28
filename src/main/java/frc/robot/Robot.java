@@ -64,7 +64,7 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
   //  System.out.println(hatchShooter.ultrasonic.getRangeInches());
     // System.out.println(lift.master.getSelectedSensorPosition());
-    System.out.println(elevator.master.getSelectedSensorPosition());
+    // System.out.println(elevator.master.getSelectedSensorPosition());
   }
 
   /**
@@ -125,9 +125,9 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
     lift.updateSlaves();
-    SmartDashboard.putNumber("Elevator Encoder", elevator.master.getSelectedSensorPosition());
+    // SmartDashboard.putNumber("Elevator Encoder", elevator.master.getSelectedSensorPosition());
     elevator.updateSlave();
-    System.out.println(elevator.master.getSelectedSensorPosition());
+    // System.out.println(elevator.master.getSelectedSensorPosition());
   }
 
   /**

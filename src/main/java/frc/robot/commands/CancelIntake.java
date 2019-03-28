@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class CancelIntake extends Command {
   public CancelIntake() {
@@ -25,7 +26,8 @@ public class CancelIntake extends Command {
     new CargoIntake_Stop().start();
     new CargoShooter_Stop().start();
     new CargoTransporter_Stop().start();
-    //TODO: bring lift up
+    new SetLiftHeight(RobotMap.LIFT_RAISED_HEIGHT).start();
+
   }
 
   // Called repeatedly when this Command is scheduled to run

@@ -70,6 +70,7 @@ public class RobotMap {
 
     LIFT_GROUND_HEIGHT = 280,
     LIFT_RAISED_HEIGHT = 0,
+<<<<<<< HEAD
 
     
     HATCH_LEVEL_1 = 00,
@@ -79,13 +80,38 @@ public class RobotMap {
     CARGO_LEVEL_1 = 0000,
     CARGO_LEVEL_2 = CARGO_LEVEL_CARGOSHIP,
     CARGO_LEVEL_3 = 5000,
+=======
+    
+>>>>>>> launchpadless
     //finish declaring the encoder heights for the elevator
     ELEVATOR_LEFT_MOTOR_ID = 50,
     ELEVATOR_RIGHT_MOTOR_ID = 51,
     //finish declaring elevator motor ids
 
+<<<<<<< HEAD
     ELEVATOR_ACCELERATION = 500,
     ELEVATOR_MAX_VELOCITY = 500;
+=======
+    ELEVATOR_ACCELERATION = 1000,
+    ELEVATOR_MAX_VELOCITY = 1000;
   ;
+
+  public static final int TICKS_PER_INCH = 879;
+  public static final int MINIMUM_HEIGHT_INCHES = 19;
+  public static final int MAXIMUM_ELEVATOR_HEIGHT_TICKS = 58000;
+
+  public static final int
+    ROCKET_HATCH_1 = (19-MINIMUM_HEIGHT_INCHES)*TICKS_PER_INCH,
+    ROCKET_HATCH_2 = (47-MINIMUM_HEIGHT_INCHES)*TICKS_PER_INCH,
+    ROCKET_HATCH_3 = (75-MINIMUM_HEIGHT_INCHES)*TICKS_PER_INCH,
+
+    ROCKET_CARGO_1 = 5000,
+    ROCKET_CARGO_2 = 15000,
+    ROCKET_CARGO_3 = 25000,	
+
+    CARGOSHIP_CARGO = 10000
+>>>>>>> launchpadless
+  ;
+  
 }
 

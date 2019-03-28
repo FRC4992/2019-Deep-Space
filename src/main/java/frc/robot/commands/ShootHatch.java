@@ -12,7 +12,7 @@ import frc.robot.Robot;
 
 public class ShootHatch extends Command {
   long startTime;
-  int retractDelay = 500;//milliseconds the command waits until it retracts the pistons
+  int retractDelay = 2000;//milliseconds the command waits until it retracts the pistons
   boolean finished = false;//whether or not the command has finished
   public ShootHatch() {
     // Use requires() here to declare subsystem dependencies
@@ -26,7 +26,7 @@ public class ShootHatch extends Command {
   protected void initialize() {
     finished = false;
     startTime = System.currentTimeMillis();
-    if(Robot.hatchShooter.getDistance()<36){
+    if(Robot.hatchShooter.ultrasonic.getRangeInches()<36 && Robot.hatchShooter.ultrasonic.getRangeInches()!=0){
       Robot.hatchShooter.extend();
       System.out.println("Shoot");
     } 

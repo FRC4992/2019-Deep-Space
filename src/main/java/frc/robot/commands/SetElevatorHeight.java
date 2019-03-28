@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class SetElevatorHeight extends Command {
   int desiredHeight;
@@ -28,7 +29,11 @@ public class SetElevatorHeight extends Command {
   @Override
   protected void execute() {
     System.out.println("Going to height: "+desiredHeight);
-    Robot.elevator.setTicks(desiredHeight);
+    if(desiredHeight<RobotMap.MAXIMUM_ELEVATOR_HEIGHT_TICKS){
+      Robot.elevator.setTicks(desiredHeight);
+    }else{
+      System.out.println("Maximum Elevator Height Exceeded: "+desiredHeight);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

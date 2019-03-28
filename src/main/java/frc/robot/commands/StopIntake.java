@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class StopIntake extends Command {
   public StopIntake() {
@@ -22,7 +23,7 @@ public class StopIntake extends Command {
   @Override
   protected void initialize() {
     new CargoIntake_Stop().start();
-    //TODO: bring lift back up
+    new SetLiftHeight(RobotMap.LIFT_RAISED_HEIGHT).start();
   }
 
   // Called repeatedly when this Command is scheduled to run
