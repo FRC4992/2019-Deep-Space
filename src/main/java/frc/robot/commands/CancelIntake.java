@@ -22,9 +22,9 @@ public class CancelIntake extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    new CargoIntake_Stop();
-    new CargoShooter_Stop();
-    new CargoTransporter_Stop();
+    new CargoIntake_Stop().start();
+    new CargoShooter_Stop().start();
+    new CargoTransporter_Stop().start();
     //TODO: bring lift up
   }
 

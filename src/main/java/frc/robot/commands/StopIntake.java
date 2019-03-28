@@ -21,7 +21,7 @@ public class StopIntake extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    new CargoIntake_Stop();
+    new CargoIntake_Stop().start();
     //TODO: bring lift back up
   }
 
