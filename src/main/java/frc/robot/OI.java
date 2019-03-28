@@ -26,6 +26,7 @@ import frc.robot.commands.ShootHatch;
 import frc.robot.commands.IntakeCargo;
 import frc.robot.commands.StopIntake;
 import frc.robot.commands.ToggleLift;
+import frc.robot.commands.SetElevatorHeight;
 
 /**
  * This class is the glue that binds the controls on the physical operator
