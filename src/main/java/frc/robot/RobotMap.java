@@ -15,6 +15,7 @@ package frc.robot;
  */
 public class RobotMap {
   public static final int DRIVE_JOYSTICK_ID = 0;
+  public static final int CONTROL_PANEL_ID = 1;
   public static final int 
     TALON_SLOT_ID = 0,
     TALON_TIMEOUT_MS = 30
@@ -68,7 +69,32 @@ public class RobotMap {
     //set motion magic values
 
     LIFT_GROUND_HEIGHT = 280,
-    LIFT_RAISED_HEIGHT = 0
+    LIFT_RAISED_HEIGHT = 0,
+    
+    //finish declaring the encoder heights for the elevator
+    ELEVATOR_LEFT_MOTOR_ID = 50,
+    ELEVATOR_RIGHT_MOTOR_ID = 51,
+    //finish declaring elevator motor ids
+
+    ELEVATOR_ACCELERATION = 1000,
+    ELEVATOR_MAX_VELOCITY = 1000;
   ;
+
+  public static final int TICKS_PER_INCH = 879;
+  public static final int MINIMUM_HEIGHT_INCHES = 19;
+  public static final int MAXIMUM_ELEVATOR_HEIGHT_TICKS = 58000;
+
+  public static final int
+    ROCKET_HATCH_1 = (19-MINIMUM_HEIGHT_INCHES)*TICKS_PER_INCH,
+    ROCKET_HATCH_2 = (47-MINIMUM_HEIGHT_INCHES)*TICKS_PER_INCH,
+    ROCKET_HATCH_3 = (75-MINIMUM_HEIGHT_INCHES)*TICKS_PER_INCH,
+
+    ROCKET_CARGO_1 = 5000,
+    ROCKET_CARGO_2 = 15000,
+    ROCKET_CARGO_3 = 25000,	
+
+    CARGOSHIP_CARGO = 10000
+  ;
+  
 }
 

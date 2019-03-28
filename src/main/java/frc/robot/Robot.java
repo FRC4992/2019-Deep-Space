@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Hatch;
 import frc.robot.subsystems.Lift;
+import frc.robot.subsystems.Elevator;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -38,6 +39,7 @@ public class Robot extends TimedRobot {
   public static CargoTransporter cargoTransporter = new CargoTransporter();
   public static Hatch hatchShooter = new Hatch();
   public static Lift lift = new Lift();
+  public static Elevator elevator = new Elevator();
 
   /**
    * This function is run when the robot is first started up and should be
@@ -62,6 +64,7 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
   //  System.out.println(hatchShooter.ultrasonic.getRangeInches());
     // System.out.println(lift.master.getSelectedSensorPosition());
+    // System.out.println(elevator.master.getSelectedSensorPosition());
   }
 
   /**
@@ -112,7 +115,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
- 
+    
   }
 
   /**
@@ -122,6 +125,9 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
     lift.updateSlaves();
+    // SmartDashboard.putNumber("Elevator Encoder", elevator.master.getSelectedSensorPosition());
+    elevator.updateSlave();
+    // System.out.println(elevator.master.getSelectedSensorPosition());
   }
 
   /**
@@ -129,6 +135,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
-    new ManualLiftControl();
+    new ManualLiftControl().start();
   }
 }

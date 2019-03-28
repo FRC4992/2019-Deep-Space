@@ -8,37 +8,38 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 
-public class CancelIntake extends Command {
-  public CancelIntake() {
+public class ManualElevatorControl extends Command {
+  public ManualElevatorControl() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.cargoIntake);
-    requires(Robot.cargoShooter);
-    requires(Robot.cargoTransporter);
+    requires(Robot.elevator);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    new CargoIntake_Stop().start();
-    new CargoShooter_Stop().start();
-    new CargoTransporter_Stop().start();
-    new SetLiftHeight(RobotMap.LIFT_RAISED_HEIGHT).start();
-
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if(OI.driveStick.getRawAxis(1)<0){
+      Robot.elevator.master.setInverted(true);
+      Robot.elevator.slave.setInverted(true);
+    }else{
+      Robot.elevator.master.setInverted(false);
+      Robot.elevator.slave.setInverted(false);
+    }
+    Robot.elevator.master.set(Math.abs(OI.driveStick.getRawAxis(1)/4));
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true

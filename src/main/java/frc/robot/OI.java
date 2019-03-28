@@ -25,7 +25,8 @@ import frc.robot.commands.StopFollowingLine;
 import frc.robot.commands.ShootHatch;
 import frc.robot.commands.IntakeCargo;
 import frc.robot.commands.StopIntake;
-import frc.robot.commands.ToggleLift;
+// import frc.robot.commands.ToggleLift;
+import frc.robot.commands.SetElevatorHeight;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -33,9 +34,10 @@ import frc.robot.commands.ToggleLift;
  */
 public class OI {
   public static Joystick driveStick = new Joystick(RobotMap.DRIVE_JOYSTICK_ID);
+  public static Joystick driver2 = new Joystick(1);
 
-  private Button intakeButton = new JoystickButton(driveStick,2);
-  private Button cargoShooter = new JoystickButton(driveStick, 4);
+  // private Button intakeButton = new JoystickButton(driveStick,3);
+  private Button cargoShooter = new JoystickButton(driveStick, 2);
   private Button conveyorButton = new JoystickButton(driveStick,1);
   public static Button followLineButton = new JoystickButton(driveStick,1);//A button
   public static Button driveSlowSpeed = new JoystickButton(driveStick, 5);//left bumper
@@ -50,6 +52,18 @@ public class OI {
     private Button conveyorButton = new JoystickButton(driveStick,1);
     private Button intakeButton = new JoystickButton(driveStick,2);
   */
+
+
+  public static Button lowHatch = new JoystickButton(driver2,4);
+	public static Button midHatch = new JoystickButton(driver2,7);
+	public static Button highHatch = new JoystickButton(driver2,9);
+	public static Button lowCargo = new JoystickButton(driver2,15);
+	public static Button midCargo = new JoystickButton(driver2,14);
+	public static Button highCargo = new JoystickButton(driver2,3);
+	public static Button shipCargo = new JoystickButton(driver2,6);
+	
+	public static Button secondaryShootHatch = new JoystickButton(driver2,16);
+
   public OI(){
     /*Used for manual control of cargo intake
         conveyorButton.whenPressed(new Cargo_Transporter_Start());
@@ -80,9 +94,24 @@ public class OI {
     //cargo shooter buttons
     cargoIntake.whenPressed(new IntakeCargo());
     cargoIntake.whenReleased(new StopIntake());
-    //TODO: When released bring lift down
     cancelAll.whenPressed(new CancelIntake());
     //cargo intake button
-    liftButton.toggleWhenPressed(new ToggleLift());
+  
+
+
+
+
+    lowCargo.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_1));
+		midCargo.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_2));
+		highCargo.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_3));
+
+		lowHatch.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_1));
+		midHatch.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_2));
+		highHatch.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_3));
+		shipCargo.whenPressed(new SetElevatorHeight(RobotMap.CARGOSHIP_CARGO));
+
+
+
   }
+ 
 }

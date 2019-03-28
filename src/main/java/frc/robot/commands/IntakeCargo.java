@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 import frc.robot.subsystems.CargoIntake;
 
 public class IntakeCargo extends Command {
@@ -20,6 +21,7 @@ public class IntakeCargo extends Command {
     requires(Robot.cargoIntake);
     requires(Robot.cargoShooter);
     requires(Robot.cargoTransporter);
+    // requires
 
     shooterCommand = new CargoShooter_Start();
   }
@@ -31,6 +33,7 @@ public class IntakeCargo extends Command {
     shooterCommand.start();
     new Cargo_Transporter_Start().start();
     new CargoIntake_Start().start();
+    new SetLiftHeight(RobotMap.LIFT_GROUND_HEIGHT).start();
     //TODO: bring lift down
 
   }
