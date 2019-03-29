@@ -7,6 +7,8 @@
 
 package frc.robot.commands;
 
+import java.util.Arrays;
+
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.OI;
@@ -30,7 +32,16 @@ public class ArcadeDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    drive.arcadeDrive(-OI.driveStick.getRawAxis(1)*Robot.drive.directionMultiplier, OI.driveStick.getRawAxis(0));
+    // if(Robot.drive.followingLine){
+    //   drive.arcadeDrive(Robot.drive.driveVals[0], Robot.drive.driveVals[1]);
+    //   System.out.println("usinng vals: "+Arrays.toString(Robot.drive.driveVals));
+    // }else{
+    //   // Robot.drive.driveValues[0] = 0;
+    //   // Robot.drive.driveValues[1] = 0;
+      drive.arcadeDrive(-OI.driveStick.getRawAxis(1)*Robot.drive.directionMultiplier, OI.driveStick.getRawAxis(0));
+    //   System.out.println("reg drive");
+    // }
+
     switch(OI.driveStick.getPOV()){
       case 0://up on the dpad
         Robot.drive.setSpeed(Drive.FULL_SPEED);//go full speed

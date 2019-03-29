@@ -31,7 +31,7 @@ public class Drive extends Subsystem {
   // here. Call these from Commands.
   CANSparkMax frontLeft, frontRight, backLeft, backRight;
   SpeedControllerGroup left, right;
-  DifferentialDrive drive;
+  public DifferentialDrive drive;
   // DoubleSolenoid leftGearShifter, rightGearShifter;
   DoubleSolenoid shifter;
   public static final int FULL_SPEED = 0;
@@ -40,6 +40,8 @@ public class Drive extends Subsystem {
   AHRS navx;
   public boolean followingLine = false;
   public int directionMultiplier = 1;
+
+  public double[] driveVals = {0,0};
   public Drive(){
     frontLeft = new CANSparkMax(RobotMap.FRONT_LEFT_DRIVE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
     backLeft = new CANSparkMax(RobotMap.BACK_LEFT_DRIVE_MOTOR, CANSparkMaxLowLevel.MotorType.kBrushless);
@@ -123,13 +125,19 @@ public class Drive extends Subsystem {
     navx.reset();
   }
   public void stop(){
-    drive.arcadeDrive(0, 0);
+    // drive.arcadeDrive(0, 0);
+    driveVals[0] = 0;
+    driveVals[1] = 0;
   }
   public void driveForward(double speed){
-    drive.arcadeDrive(0, speed);
+    // drive.arcadeDrive(0, speed);
+    driveVals[0] = 0;
+    driveVals[1] = speed;
   }
   public void setSpeed(double xSpeed, double zRotation){
-    drive.arcadeDrive(xSpeed, zRotation);
+    // drive.arcadeDrive(xSpeed, zRotation);
+    driveVals[0] = xSpeed;
+    driveVals[1] = zRotation;
   }
 
   private void fullSpeed(){

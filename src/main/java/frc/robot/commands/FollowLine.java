@@ -27,7 +27,7 @@ public class FollowLine extends Command {
   public FollowLine() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.drive);
+    // requires(Robot.drive);
   }
 
   // Called just before this Command runs the first time
@@ -39,6 +39,7 @@ public class FollowLine extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.drive.followingLine = true;
     linePos = Robot.drive.getLinePos();
     //update the position of the line
     if(linePos == -1){
@@ -59,7 +60,8 @@ public class FollowLine extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return !Robot.drive.followingLine;
+    // return !Robot.drive.followingLine;
+    return false;
   }
 
   // Called once after isFinished returns true

@@ -13,6 +13,9 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.Drive;
+import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.CancelIntake;
+import frc.robot.commands.CargoShooter_Stop;
 import frc.robot.commands.ManualLiftControl;
 // import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 // import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -67,7 +70,7 @@ public class Robot extends TimedRobot {
   //  System.out.println(hatchShooter.ultrasonic.getRangeInches());
     // System.out.println(lift.master.getSelectedSensorPosition());
     // System.out.println(elevator.master.getSelectedSensorPosition());
-    //System.out.println("P: "+drive.getLinePos());
+    // System.out.println("P: "+drive.getLinePos());
   }
 
   /**
@@ -128,6 +131,9 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    // if(!drive.followingLine){
+    //   new ArcadeDrive(drive.drive);
+    // }
     lift.updateSlaves();
     // SmartDashboard.putNumber("Elevator Encoder", elevator.master.getSelectedSensorPosition());
     elevator.updateSlave();
@@ -135,6 +141,11 @@ public class Robot extends TimedRobot {
     // System.out.println("Lift Value: "+lift.master.getSelectedSensorPosition());
   }
 
+  @Override
+  public void testInit(){
+    new CargoShooter_Stop().start();
+    new CancelIntake().start();
+  }
   /**
    * This function is called periodically during test mode.
    */
