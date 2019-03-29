@@ -24,6 +24,7 @@ public class SetGamePiece extends Command {
   @Override
   protected void initialize() {
     Robot.m_oi.setGamePiece(gamePiece);
+    // Robot.m_oi = new OI(gamePiece);
     if(gamePiece == OI.CARGO_OI){
       SmartDashboard.putBoolean("CARGO MODE", true);
       SmartDashboard.putBoolean("HATCH MODE", false);

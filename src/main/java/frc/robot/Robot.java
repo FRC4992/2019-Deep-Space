@@ -142,6 +142,7 @@ public class Robot extends TimedRobot {
     lift.master.set(OI.driveStick.getRawAxis(1)/4);
     lift.updateSlaves();
     cargoIntake.motor.set(ControlMode.PercentOutput,OI.driveStick.getRawAxis(5));
+    cargoTransporter.cargoTransportMotor.set(ControlMode.PercentOutput,-OI.driveStick.getRawAxis(5));
     
   }
 }

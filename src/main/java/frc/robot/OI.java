@@ -82,7 +82,7 @@ public class OI {
         intakeButton.whenReleased(new CargoIntake_Stop());
 
     */ 
-    setGamePiece(OI.HATCH_OI);
+    // setGamePiece(OI.CARGO_OI);
     //assign buttons their commands
     cargoShooter.whenPressed(new CargoShooter_Start());
     cargoShooter.whenReleased(new CargoShooter_Stop());
@@ -130,19 +130,39 @@ public class OI {
   public static final int HATCH_OI = 0;
   public static final int CARGO_OI = 1;
   public void setGamePiece(int gamePiece){
+    reconstructDriver2();
     switch(gamePiece){
       case HATCH_OI:
+        System.out.println("Switching to hatch mode");
         lowElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_1));
         mediumElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_2));
         highElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_3));
       break;
       case CARGO_OI:
+        System.out.println("Switching to cargo mode");
         lowElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_1));
         mediumElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_2));
         highElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_3));
         cargoShipCargoElevator.whenPressed(new SetElevatorHeight(RobotMap.CARGOSHIP_CARGO));
       break;
     }
+  }
+
+  private void reconstructDriver2(){
+    lowElevator = null;
+    lowElevator = null;
+    mediumElevator = null;
+    highElevator = null;
+    cargoShipCargoElevator = null;
+
+    lowElevator = new JoystickButton(driver2,10);
+    mediumElevator = new JoystickButton(driver2,13);
+    highElevator = new JoystickButton(driver2,14);
+    cargoShipCargoElevator = new JoystickButton(driver2,12);
+    lowElevator = new JoystickButton(driver2,0);
+    mediumElevator = new JoystickButton(driver2,3);
+    highElevator = new JoystickButton(driver2,4);
+    cargoShipCargoElevator = new JoystickButton(driver2,2);
   }
  
 }
