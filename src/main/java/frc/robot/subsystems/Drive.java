@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.ArcadeDrive;
 
@@ -95,6 +96,9 @@ public class Drive extends Subsystem {
      * left+center = 2, center+right = 4
      * no sensors = -1
      */
+    SmartDashboard.putBoolean("L",getLeftSensor());
+    SmartDashboard.putBoolean("C",getCenterSensor());
+    SmartDashboard.putBoolean("R",getRightSensor());
     if(!getLeftSensor() && !getCenterSensor() && !getRightSensor()){
       return -1;
     }else if(getLeftSensor() && !getCenterSensor() && !getRightSensor()){

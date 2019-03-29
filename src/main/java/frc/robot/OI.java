@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.CancelIntake;
 import frc.robot.commands.CargoIntake_Start;
 import frc.robot.commands.CargoIntake_Stop;
+import frc.robot.commands.CargoShooterIntake_Start;
 import frc.robot.commands.CargoShooter_Start;
 import frc.robot.commands.CargoShooter_Stop;
 import frc.robot.commands.CargoTransporter_Stop;
@@ -21,6 +22,7 @@ import frc.robot.commands.SwitchDriveGear;
 import frc.robot.commands.ToggleDirection;
 import frc.robot.subsystems.Drive;
 import frc.robot.commands.FollowLine;
+import frc.robot.commands.ForceCargoShoot;
 import frc.robot.commands.StopFollowingLine;
 import frc.robot.commands.ShootHatch;
 import frc.robot.commands.IntakeCargo;
@@ -38,8 +40,9 @@ public class OI {
   public static Joystick driver2 = new Joystick(1);
 
   // private Button intakeButton = new JoystickButton(driveStick,3);
-  private Button cargoShooter = new JoystickButton(driveStick, 2);
-  private Button conveyorButton = new JoystickButton(driveStick,1);
+  // private Button cargoShooter = new JoystickButton(driveStick, 2);
+  private Button cargoShooterIntake = new JoystickButton(driveStick,2);
+  // private Button conveyorButton = new JoystickButton(driveStick,1);
   public static Button followLineButton = new JoystickButton(driveStick,1);//A button
   public static Button driveSlowSpeed = new JoystickButton(driveStick, 5);//left bumper
   public static Button driveFullSpeed = new JoystickButton(driveStick, 6);//right bumper
@@ -48,7 +51,7 @@ public class OI {
   Button hatchButton = new JoystickButton(driveStick,4);//assign the hatch to Y
   private Button cargoIntake = new JoystickButton(driveStick,3);//X button
   private Button cancelAll = new JoystickButton(driveStick,7);//back button
-  Button liftButton = new JoystickButton(driveStick,2);
+  // Button liftButton = new JoystickButton(driveStick,2);
   /*Used for manual control of cargo intake
     private Button conveyorButton = new JoystickButton(driveStick,1);
     private Button intakeButton = new JoystickButton(driveStick,2);
@@ -84,11 +87,11 @@ public class OI {
     */ 
     // setGamePiece(OI.CARGO_OI);
     //assign buttons their commands
-    cargoShooter.whenPressed(new CargoShooter_Start());
-    cargoShooter.whenReleased(new CargoShooter_Stop());
+    // cargoShooter.whenPressed(new CargoShooter_Start());TODO:Idk if this is right
+    // cargoShooter.whenReleased(new CargoShooter_Stop());
 
-    conveyorButton.whenPressed(new Cargo_Transporter_Start());
-    conveyorButton.whenReleased(new CargoTransporter_Stop());
+    // conveyorButton.whenPressed(new Cargo_Transporter_Start());
+    // conveyorButton.whenReleased(new CargoTransporter_Stop());
 
     driveFullSpeed.whenPressed(new SwitchDriveGear(Drive.FULL_SPEED));
     driveSlowSpeed.whenPressed(new SwitchDriveGear(Drive.SLOW_SPEED));
@@ -102,8 +105,18 @@ public class OI {
     hatchButton.whenPressed(new ShootHatch());//shoot the hatch when the button is pressed
 
     //cargo shooter buttons
-    cargoIntake.whenPressed(new IntakeCargo());
-    cargoIntake.whenReleased(new StopIntake());
+    //cargoIntake.whenPressed(new IntakeCargo()); //TODO: Put these back eventually
+    //cargoIntake.whenReleased(new StopIntake());
+
+    cargoShooterIntake.whileHeld(new CargoShooterIntake_Start());
+    cargoShooterIntake.whenReleased(new CargoShooter_Stop());
+
+
+
+    cargoIntake.whileHeld(new ForceCargoShoot());
+    cargoIntake.whenReleased(new CargoShooter_Stop());
+
+
     cancelAll.whenPressed(new CancelIntake());
     //cargo intake button
 
@@ -111,6 +124,11 @@ public class OI {
     cargoMode.whenPressed(new SetGamePiece(OI.CARGO_OI));
   
 
+
+    lowElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_1));
+    mediumElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_2));
+    highElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_3));
+    cargoShipCargoElevator.whenPressed(new SetElevatorHeight(RobotMap.CARGOSHIP_CARGO));
 
 
 

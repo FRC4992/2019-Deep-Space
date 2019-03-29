@@ -44,9 +44,9 @@ public class RobotMap {
   ;
 
   public static final int
-  LEFT_LINE_SENSOR_ID = 0,
-  CENTER_LINE_SENSOR_ID = 1,
-  RIGHT_LINE_SENSOR_ID = 2
+  CENTER_LINE_SENSOR_ID = 0,
+  RIGHT_LINE_SENSOR_ID = 1,
+  LEFT_LINE_SENSOR_ID = 2
   ;
 
   public static final int
@@ -76,8 +76,8 @@ public class RobotMap {
     ELEVATOR_RIGHT_MOTOR_ID = 51,
     //finish declaring elevator motor ids
 
-    ELEVATOR_ACCELERATION = 1000,
-    ELEVATOR_MAX_VELOCITY = 1000;
+    ELEVATOR_ACCELERATION = 3100,
+    ELEVATOR_MAX_VELOCITY = 3100;
   ;
 
   public static final int TICKS_PER_INCH = 879;
@@ -86,14 +86,14 @@ public class RobotMap {
 
   public static final int
     ROCKET_HATCH_1 = (19-MINIMUM_HEIGHT_INCHES)*TICKS_PER_INCH,
-    ROCKET_HATCH_2 = (47-MINIMUM_HEIGHT_INCHES)*TICKS_PER_INCH,
-    ROCKET_HATCH_3 = (75-MINIMUM_HEIGHT_INCHES)*TICKS_PER_INCH,
+    ROCKET_HATCH_2 = (47+2-MINIMUM_HEIGHT_INCHES)*TICKS_PER_INCH,
+    ROCKET_HATCH_3 = (79-MINIMUM_HEIGHT_INCHES)*TICKS_PER_INCH,//supposed to be 75 inches but needed an offset
 
     ROCKET_CARGO_1 = 5000,
     ROCKET_CARGO_2 = 15000,
     ROCKET_CARGO_3 = 25000,	
 
-    CARGOSHIP_CARGO = 10000
+    CARGOSHIP_CARGO = (43-MINIMUM_HEIGHT_INCHES)*TICKS_PER_INCH;
   ;
   
 }

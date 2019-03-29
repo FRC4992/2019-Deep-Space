@@ -67,6 +67,7 @@ public class Robot extends TimedRobot {
   //  System.out.println(hatchShooter.ultrasonic.getRangeInches());
     // System.out.println(lift.master.getSelectedSensorPosition());
     // System.out.println(elevator.master.getSelectedSensorPosition());
+    //System.out.println("P: "+drive.getLinePos());
   }
 
   /**
@@ -118,6 +119,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     lift.master.setSelectedSensorPosition(0);
+    elevator.master.setSelectedSensorPosition(0);
   }
 
   /**
@@ -141,7 +143,7 @@ public class Robot extends TimedRobot {
     // new ManualLiftControl().start();
     lift.master.set(OI.driveStick.getRawAxis(1)/4);
     lift.updateSlaves();
-    cargoIntake.motor.set(ControlMode.PercentOutput,OI.driveStick.getRawAxis(5));
+    cargoIntake.motor.set(ControlMode.PercentOutput,OI.driveStick.getRawAxis(5)*0.6);
     cargoTransporter.cargoTransportMotor.set(ControlMode.PercentOutput,-OI.driveStick.getRawAxis(5));
     
   }
