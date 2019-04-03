@@ -29,7 +29,7 @@ public class SetElevatorHeight extends Command {
   @Override
   protected void execute() {
     System.out.println("Going to height: "+desiredHeight);
-    if(desiredHeight<RobotMap.MAXIMUM_ELEVATOR_HEIGHT_TICKS && 0<=desiredHeight){
+    if(desiredHeight<=RobotMap.MAXIMUM_ELEVATOR_HEIGHT_TICKS && 0<=desiredHeight){
       Robot.elevator.setTicks(desiredHeight);
     }else{
       System.out.println("Maximum Elevator Height Exceeded: "+desiredHeight);

@@ -56,7 +56,7 @@ public class Lift extends Subsystem {
   }
 
   public void updateSlaves(){
-    slave.set(ControlMode.PercentOutput,master.getMotorOutputPercent()*0.80);
+    slave.set(ControlMode.PercentOutput,master.getMotorOutputPercent()*0.60);
   }
 
   @Override

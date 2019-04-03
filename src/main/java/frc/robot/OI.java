@@ -50,7 +50,9 @@ public class OI {
 
   Button hatchButton = new JoystickButton(driveStick,4);//assign the hatch to Y
   private Button cargoIntake = new JoystickButton(driveStick,3);//X button
-  private Button cancelAll = new JoystickButton(driveStick,7);//back button
+  // private Button cancelAll = new JoystickButton(driveStick,7);//back button
+
+  private Button cargoIntakeStation = new JoystickButton(driver2,7);
   // Button liftButton = new JoystickButton(driveStick,2);
   /*Used for manual control of cargo intake
     private Button conveyorButton = new JoystickButton(driveStick,1);
@@ -105,8 +107,10 @@ public class OI {
     hatchButton.whenPressed(new ShootHatch());//shoot the hatch when the button is pressed
 
     //cargo shooter buttons
-    cargoIntake.whenPressed(new IntakeCargo()); //TODO: Put these back eventually
-    cargoIntake.whenReleased(new StopIntake());
+    // cargoIntake.whenPressed(new IntakeCargo()); //TODO: Put these back eventually
+    // cargoIntake.whenReleased(new StopIntake());
+    cargoIntake.whenPressed(new CargoShooterIntake_Start());
+    cargoIntake.whenReleased(new CargoShooter_Stop());
 
     cargoShooter.whenPressed(new ForceCargoShoot());
     cargoShooter.whenReleased(new CargoShooter_Stop());
@@ -120,18 +124,24 @@ public class OI {
     // cargoIntake.whenReleased(new CargoShooter_Stop());
 
 
-    cancelAll.whenPressed(new CancelIntake());
+    // cancelAll.whenPressed(new CancelIntake());
     //cargo intake button
 
-    hatchMode.whenPressed(new SetGamePiece(OI.HATCH_OI));
-    cargoMode.whenPressed(new SetGamePiece(OI.CARGO_OI));
+    // hatchMode.whenPressed(new SetGamePiece(OI.HATCH_OI));
+    // cargoMode.whenPressed(new SetGamePiece(OI.CARGO_OI));
   
-
 
     lowElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_1));
     mediumElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_2));
     highElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_3));
+
+    // lowElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_1));
+    // mediumElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_2));
+    // highElevator.whenPressed(new SetElevatorHeight(RobotMap.MAXIMUM_ELEVATOR_HEIGHT_TICKS));
+
+
     cargoShipCargoElevator.whenPressed(new SetElevatorHeight(RobotMap.CARGOSHIP_CARGO));
+    cargoIntakeStation.whenPressed(new SetElevatorHeight(RobotMap.CARGO_LOADING_STATION_HEIGHT));
 
 
 
