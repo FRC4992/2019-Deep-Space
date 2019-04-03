@@ -29,7 +29,7 @@ public class CargoIntake_Stop extends Command {
   protected void execute() {
     Robot.cargoIntake.motor.set(ControlMode.PercentOutput,0);
     // Robot.cargoIntake.motor.set
-    System.out.println("stop");
+    // System.out.println("stop");
   }
 
   // Make this return true when this Command no longer needs to run execute()

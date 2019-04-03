@@ -14,7 +14,7 @@ public class StopFollowingLine extends Command {
   public StopFollowingLine() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.drive);
+    // requires(Robot.drive);
   }
 
   // Called just before this Command runs the first time
@@ -27,6 +27,7 @@ public class StopFollowingLine extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.drive.followingLine = false;
   }
 
   // Make this return true when this Command no longer needs to run execute()

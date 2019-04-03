@@ -49,6 +49,13 @@ public class IntakeCargo extends Command {
     }else{
       new Cargo_Transporter_Start().start();
       new CargoIntake_Start().start();
+      if(Robot.lift.master.getSelectedSensorPosition()>150){
+        System.out.println("Spinning Intake Thingy");
+        // new CargoIntake_Start().start();
+      }else{
+        // new CargoIntake_Stop().start();
+        System.out.println("Waiting");
+      }
     }
   }
 

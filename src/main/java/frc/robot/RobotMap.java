@@ -44,9 +44,9 @@ public class RobotMap {
   ;
 
   public static final int
-  LEFT_LINE_SENSOR_ID = 0,
+  RIGHT_LINE_SENSOR_ID = 0,
   CENTER_LINE_SENSOR_ID = 1,
-  RIGHT_LINE_SENSOR_ID = 2
+  LEFT_LINE_SENSOR_ID = 2
   ;
 
   public static final int
@@ -64,12 +64,12 @@ public class RobotMap {
     LIFT_RIGHT_MOTOR_ID = 40,
     //finish declaring LIFT motor ids
 
-    LIFT_ACCELERATION = 500,
-    LIFT_MAX_VELOCITY = 500,
+    LIFT_ACCELERATION = 100,
+    LIFT_MAX_VELOCITY = 100,
     //set motion magic values
 
-    LIFT_GROUND_HEIGHT = 280,
-    LIFT_RAISED_HEIGHT = 0,
+    LIFT_GROUND_HEIGHT = 200,//280
+    LIFT_RAISED_HEIGHT = 10,
     
     //finish declaring the encoder heights for the elevator
     ELEVATOR_LEFT_MOTOR_ID = 50,

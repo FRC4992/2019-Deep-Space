@@ -7,34 +7,45 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.OI;
 import frc.robot.Robot;
 
-public class CargoIntake_Start extends Command {
-  public CargoIntake_Start() {
+public class SetGamePiece extends Command {
+  int gamePiece;
+  public SetGamePiece(int gamePiece) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.cargoIntake);
+    this.gamePiece = gamePiece;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.m_oi.setGamePiece(gamePiece);
+    // Robot.m_oi = new OI(gamePiece);
+    if(gamePiece == OI.CARGO_OI){
+      SmartDashboard.putBoolean("CARGO MODE", true);
+      SmartDashboard.putBoolean("HATCH MODE", false);
+    }else if(gamePiece == OI.HATCH_OI){
+      SmartDashboard.putBoolean("HATCH MODE", true);
+      SmartDashboard.putBoolean("CARGO MODE", false);
+    }else{
+      SmartDashboard.putBoolean("CARGO MODE", true);
+      SmartDashboard.putBoolean("HATCH MODE", true);
+    }
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.cargoIntake.motor.set(ControlMode.PercentOutput,0.6);
-    // System.out.println("start");
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true

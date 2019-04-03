@@ -21,8 +21,8 @@ import frc.robot.SpikeChecker;
 public class CargoShooter extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public SpikeChecker initialSpikeChecker = new SpikeChecker(0.8,10,10);
-  public SpikeChecker intakeSpikeChecker = new SpikeChecker(0.8,10,10);
+  public SpikeChecker initialSpikeChecker = new SpikeChecker(0.1,15,15);
+  public SpikeChecker intakeSpikeChecker = new SpikeChecker(0.1,15,15);
   public WPI_TalonSRX leftMotor, rightMotor;
   public CargoShooter(){
     leftMotor = new WPI_TalonSRX(RobotMap.CARGO_SHOOTER_LEFT_MOTOR);

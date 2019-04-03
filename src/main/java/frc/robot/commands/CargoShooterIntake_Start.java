@@ -7,16 +7,14 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class CargoIntake_Start extends Command {
-  public CargoIntake_Start() {
+public class CargoShooterIntake_Start extends Command {
+  public CargoShooterIntake_Start() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.cargoIntake);
+    requires(Robot.cargoShooter);
   }
 
   // Called just before this Command runs the first time
@@ -27,8 +25,8 @@ public class CargoIntake_Start extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.cargoIntake.motor.set(ControlMode.PercentOutput,0.6);
-    // System.out.println("start");
+    Robot.cargoShooter.leftMotor.set(-0.25);
+    Robot.cargoShooter.rightMotor.set(0.25);
   }
 
   // Make this return true when this Command no longer needs to run execute()

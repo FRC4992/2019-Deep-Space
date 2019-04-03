@@ -12,7 +12,7 @@ import frc.robot.Robot;
 
 public class ShootHatch extends Command {
   long startTime;
-  int retractDelay = 2000;//milliseconds the command waits until it retracts the pistons
+  int retractDelay = 2500;//milliseconds the command waits until it retracts the pistons
   boolean finished = false;//whether or not the command has finished
   public ShootHatch() {
     // Use requires() here to declare subsystem dependencies

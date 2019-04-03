@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.CancelIntake;
 import frc.robot.commands.CargoIntake_Start;
 import frc.robot.commands.CargoIntake_Stop;
+import frc.robot.commands.CargoShooterIntake_Start;
 import frc.robot.commands.CargoShooter_Start;
 import frc.robot.commands.CargoShooter_Stop;
 import frc.robot.commands.CargoTransporter_Stop;
@@ -21,12 +22,14 @@ import frc.robot.commands.SwitchDriveGear;
 import frc.robot.commands.ToggleDirection;
 import frc.robot.subsystems.Drive;
 import frc.robot.commands.FollowLine;
+import frc.robot.commands.ForceCargoShoot;
 import frc.robot.commands.StopFollowingLine;
 import frc.robot.commands.ShootHatch;
 import frc.robot.commands.IntakeCargo;
 import frc.robot.commands.StopIntake;
 // import frc.robot.commands.ToggleLift;
 import frc.robot.commands.SetElevatorHeight;
+import frc.robot.commands.SetGamePiece;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -38,7 +41,8 @@ public class OI {
 
   // private Button intakeButton = new JoystickButton(driveStick,3);
   private Button cargoShooter = new JoystickButton(driveStick, 2);
-  private Button conveyorButton = new JoystickButton(driveStick,1);
+  // private Button cargoShooterIntake = new JoystickButton(driveStick,2);
+  // private Button conveyorButton = new JoystickButton(driveStick,1);
   public static Button followLineButton = new JoystickButton(driveStick,1);//A button
   public static Button driveSlowSpeed = new JoystickButton(driveStick, 5);//left bumper
   public static Button driveFullSpeed = new JoystickButton(driveStick, 6);//right bumper
@@ -46,23 +50,33 @@ public class OI {
 
   Button hatchButton = new JoystickButton(driveStick,4);//assign the hatch to Y
   private Button cargoIntake = new JoystickButton(driveStick,3);//X button
-  private Button cancelAll = new JoystickButton(driveStick,7);//back button
-  Button liftButton = new JoystickButton(driveStick,2);
+  // private Button cancelAll = new JoystickButton(driveStick,7);//back button
+
+  private Button cargoIntakeStation = new JoystickButton(driver2,7);
+  // Button liftButton = new JoystickButton(driveStick,2);
   /*Used for manual control of cargo intake
     private Button conveyorButton = new JoystickButton(driveStick,1);
     private Button intakeButton = new JoystickButton(driveStick,2);
   */
 
 
-  public static Button lowHatch = new JoystickButton(driver2,4);
-	public static Button midHatch = new JoystickButton(driver2,7);
-	public static Button highHatch = new JoystickButton(driver2,9);
-	public static Button lowCargo = new JoystickButton(driver2,15);
-	public static Button midCargo = new JoystickButton(driver2,14);
-	public static Button highCargo = new JoystickButton(driver2,3);
-	public static Button shipCargo = new JoystickButton(driver2,6);
+  // public static Button lowHatch = new JoystickButton(driver2,4);
+	// public static Button midHatch = new JoystickButton(driver2,7);
+	// public static Button highHatch = new JoystickButton(driver2,9);
+	// public static Button lowCargo = new JoystickButton(driver2,15);
+	// public static Button midCargo = new JoystickButton(driver2,14);
+	// public static Button highCargo = new JoystickButton(driver2,3);
+  // public static Button shipCargo = new JoystickButton(driver2,6);
+  // public static Button secondaryShootHatch = new JoystickButton(driver2,16);
+  
+  public static Button lowElevator = new JoystickButton(driver2,1);
+  public static Button mediumElevator = new JoystickButton(driver2,3);
+  public static Button highElevator = new JoystickButton(driver2,4);
+  public static Button cargoShipCargoElevator = new JoystickButton(driver2,2);
+  public static Button cargoMode = new JoystickButton(driver2,5);
+  public static Button hatchMode = new JoystickButton(driver2,6);
 	
-	public static Button secondaryShootHatch = new JoystickButton(driver2,16);
+	
 
   public OI(){
     /*Used for manual control of cargo intake
@@ -73,18 +87,19 @@ public class OI {
         intakeButton.whenReleased(new CargoIntake_Stop());
 
     */ 
+    // setGamePiece(OI.CARGO_OI);
     //assign buttons their commands
-    cargoShooter.whenPressed(new CargoShooter_Start());
-    cargoShooter.whenReleased(new CargoShooter_Stop());
+    // cargoShooter.whenPressed(new CargoShooter_Start());TODO:Idk if this is right
+    // cargoShooter.whenReleased(new CargoShooter_Stop());
 
-    conveyorButton.whenPressed(new Cargo_Transporter_Start());
-    conveyorButton.whenReleased(new CargoTransporter_Stop());
+    // conveyorButton.whenPressed(new Cargo_Transporter_Start());
+    // conveyorButton.whenReleased(new CargoTransporter_Stop());
 
     driveFullSpeed.whenPressed(new SwitchDriveGear(Drive.FULL_SPEED));
     driveSlowSpeed.whenPressed(new SwitchDriveGear(Drive.SLOW_SPEED));
     //gear switcher buttons
-    followLineButton.whenPressed(new FollowLine());
-    followLineButton.whenReleased(new StopFollowingLine());
+    // followLineButton.whenPressed(new FollowLine());
+    // followLineButton.whenReleased(new StopFollowingLine());
     //follow a line while the button is pressed
     toggleDirection.whenPressed(new ToggleDirection());
     //switch the direction the robot considers forward
@@ -92,26 +107,93 @@ public class OI {
     hatchButton.whenPressed(new ShootHatch());//shoot the hatch when the button is pressed
 
     //cargo shooter buttons
-    cargoIntake.whenPressed(new IntakeCargo());
-    cargoIntake.whenReleased(new StopIntake());
-    cancelAll.whenPressed(new CancelIntake());
+    // cargoIntake.whenPressed(new IntakeCargo()); //TODO: Put these back eventually
+    // cargoIntake.whenReleased(new StopIntake());
+    cargoIntake.whenPressed(new CargoShooterIntake_Start());
+    cargoIntake.whenReleased(new CargoShooter_Stop());
+
+    cargoShooter.whenPressed(new ForceCargoShoot());
+    cargoShooter.whenReleased(new CargoShooter_Stop());
+
+    // cargoShooterIntake.whileHeld(new CargoShooterIntake_Start());
+    // cargoShooterIntake.whenReleased(new CargoShooter_Stop());
+
+
+
+    // cargoIntake.whileHeld(new ForceCargoShoot());
+    // cargoIntake.whenReleased(new CargoShooter_Stop());
+
+
+    // cancelAll.whenPressed(new CancelIntake());
     //cargo intake button
+
+    // hatchMode.whenPressed(new SetGamePiece(OI.HATCH_OI));
+    // cargoMode.whenPressed(new SetGamePiece(OI.CARGO_OI));
   
 
+    lowElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_1));
+    mediumElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_2));
+    highElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_3));
+
+    // lowElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_1));
+    // mediumElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_2));
+    // highElevator.whenPressed(new SetElevatorHeight(RobotMap.MAXIMUM_ELEVATOR_HEIGHT_TICKS));
+
+
+    cargoShipCargoElevator.whenPressed(new SetElevatorHeight(RobotMap.CARGOSHIP_CARGO));
+    cargoIntakeStation.whenPressed(new SetElevatorHeight(RobotMap.CARGO_LOADING_STATION_HEIGHT));
 
 
 
-    lowCargo.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_1));
-		midCargo.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_2));
-		highCargo.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_3));
+    // lowCargo.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_1));
+		// midCargo.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_2));
+		// highCargo.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_3));
 
-		lowHatch.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_1));
-		midHatch.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_2));
-		highHatch.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_3));
-		shipCargo.whenPressed(new SetElevatorHeight(RobotMap.CARGOSHIP_CARGO));
+		// lowHatch.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_1));
+		// midHatch.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_2));
+		// highHatch.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_3));
+		// shipCargo.whenPressed(new SetElevatorHeight(RobotMap.CARGOSHIP_CARGO));
 
 
 
+  }
+
+  public static final int HATCH_OI = 0;
+  public static final int CARGO_OI = 1;
+  public void setGamePiece(int gamePiece){
+    reconstructDriver2();
+    switch(gamePiece){
+      case HATCH_OI:
+        System.out.println("Switching to hatch mode");
+        lowElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_1));
+        mediumElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_2));
+        highElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_HATCH_3));
+      break;
+      case CARGO_OI:
+        System.out.println("Switching to cargo mode");
+        lowElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_1));
+        mediumElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_2));
+        highElevator.whenPressed(new SetElevatorHeight(RobotMap.ROCKET_CARGO_3));
+        cargoShipCargoElevator.whenPressed(new SetElevatorHeight(RobotMap.CARGOSHIP_CARGO));
+      break;
+    }
+  }
+
+  private void reconstructDriver2(){
+    lowElevator = null;
+    lowElevator = null;
+    mediumElevator = null;
+    highElevator = null;
+    cargoShipCargoElevator = null;
+
+    lowElevator = new JoystickButton(driver2,10);
+    mediumElevator = new JoystickButton(driver2,13);
+    highElevator = new JoystickButton(driver2,14);
+    cargoShipCargoElevator = new JoystickButton(driver2,12);
+    lowElevator = new JoystickButton(driver2,0);
+    mediumElevator = new JoystickButton(driver2,3);
+    highElevator = new JoystickButton(driver2,4);
+    cargoShipCargoElevator = new JoystickButton(driver2,2);
   }
  
 }

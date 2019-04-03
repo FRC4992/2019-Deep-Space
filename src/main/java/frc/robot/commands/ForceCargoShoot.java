@@ -10,13 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class SetElevatorHeight extends Command {
-  int desiredHeight;
-  public SetElevatorHeight(int height) {
+public class ForceCargoShoot extends Command {
+  public ForceCargoShoot() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.elevator);
-    desiredHeight = height;
+    requires(Robot.cargoShooter);
   }
 
   // Called just before this Command runs the first time
@@ -27,24 +25,28 @@ public class SetElevatorHeight extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println("Going to height: "+desiredHeight);
-    Robot.elevator.setTicks(desiredHeight);
+    Robot.cargoShooter.leftMotor.set(1.00);
+    Robot.cargoShooter.rightMotor.set(-1.00);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.cargoShooter.leftMotor.set(0);
+    Robot.cargoShooter.rightMotor.set(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.cargoShooter.leftMotor.set(0);
+    Robot.cargoShooter.rightMotor.set(0);
   }
 }

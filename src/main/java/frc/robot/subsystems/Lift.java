@@ -35,8 +35,8 @@ public class Lift extends Subsystem {
     master.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, RobotMap.TALON_TIMEOUT_MS);
     master.configNominalOutputForward(0,RobotMap.TALON_TIMEOUT_MS);//set peak and minimum outputs in both directions
     master.configNominalOutputReverse(0,RobotMap.TALON_TIMEOUT_MS);
-    master.configPeakOutputForward(0.1,RobotMap.TALON_TIMEOUT_MS);
-    master.configPeakOutputReverse(-0.1,RobotMap.TALON_TIMEOUT_MS);
+    master.configPeakOutputForward(0.25,RobotMap.TALON_TIMEOUT_MS);
+    master.configPeakOutputReverse(-0.25,RobotMap.TALON_TIMEOUT_MS);
 
     master.config_kP(RobotMap.TALON_SLOT_ID, 20,RobotMap.TALON_TIMEOUT_MS);//set pidf values
     master.config_kI(RobotMap.TALON_SLOT_ID, 0,RobotMap.TALON_TIMEOUT_MS);
@@ -56,13 +56,13 @@ public class Lift extends Subsystem {
   }
 
   public void updateSlaves(){
-    slave.set(ControlMode.PercentOutput,master.getMotorOutputPercent());
+    slave.set(ControlMode.PercentOutput,master.getMotorOutputPercent()*0.60);
   }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new ManualLiftControl());
+    // setDefaultCommand(new ManualLiftControl());
   }
 }
