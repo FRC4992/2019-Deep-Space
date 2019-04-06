@@ -29,7 +29,7 @@ import frc.robot.commands.IntakeCargo;
 import frc.robot.commands.StopIntake;
 // import frc.robot.commands.ToggleLift;
 import frc.robot.commands.SetElevatorHeight;
-import frc.robot.commands.SetGamePiece;
+// import frc.robot.commands.SetGamePiece;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -75,8 +75,8 @@ public class OI {
     driveFullSpeed.whenPressed(new SwitchDriveGear(Drive.FULL_SPEED));
     driveSlowSpeed.whenPressed(new SwitchDriveGear(Drive.SLOW_SPEED));
     //gear switcher buttons
-        // followLineButton.whenPressed(new FollowLine());
-        // followLineButton.whenReleased(new StopFollowingLine());
+        followLineButton.whenPressed(new FollowLine());
+        followLineButton.whenReleased(new StopFollowingLine());
         //follow a line while the button is pressed
     toggleDirection.whenPressed(new ToggleDirection());
     //switch the direction the robot considers forward

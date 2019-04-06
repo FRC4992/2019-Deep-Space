@@ -13,11 +13,11 @@ import frc.robot.Robot;
 
 public class FollowLine extends Command {
   int linePos = -1;
-  double sweepSpeed = 0.5;
+  double sweepSpeed = 0.35;
   //defines the speed the robot goes at before it finds the line
   double turnSpeed = 0.5;
   //defines how fast the robot turns when it sees a line
-  double forwardSpeed = 0.5;
+  double forwardSpeed = 0.35;
   //defines how fast the robot goes when it is centered on the line
   double forwardTurnOffset = 0.3;
   //defines how fast the robot continues to go forward while turning
@@ -34,12 +34,13 @@ public class FollowLine extends Command {
   @Override
   protected void initialize() {
     linePos = Robot.drive.getLinePos();
+    Robot.drive.followingLine = true;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.drive.followingLine = true;
+    
     linePos = Robot.drive.getLinePos();
     //update the position of the line
     if(linePos == -1){

@@ -43,7 +43,7 @@ public class Robot extends TimedRobot {
   public static CargoShooter cargoShooter = new CargoShooter();
   public static CargoTransporter cargoTransporter = new CargoTransporter();
   public static Hatch hatchShooter = new Hatch();
-  public static Lift lift = new Lift();
+  // public static Lift lift = new Lift();
   public static Elevator elevator = new Elevator();
 
   /**
@@ -71,6 +71,7 @@ public class Robot extends TimedRobot {
     // System.out.println(lift.master.getSelectedSensorPosition());
     // System.out.println(elevator.master.getSelectedSensorPosition());
     // System.out.println("P: "+drive.getLinePos());
+    drive.getLinePos();
   }
 
   /**
@@ -121,7 +122,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    lift.master.setSelectedSensorPosition(0);
+    // lift.master.setSelectedSensorPosition(0);
     elevator.master.setSelectedSensorPosition(0);
   }
 
@@ -134,7 +135,7 @@ public class Robot extends TimedRobot {
     // if(!drive.followingLine){
     //   new ArcadeDrive(drive.drive);
     // }
-    lift.updateSlaves();
+    // lift.updateSlaves();
     // SmartDashboard.putNumber("Elevator Encoder", elevator.master.getSelectedSensorPosition());
     elevator.updateSlave();
     // System.out.println(elevator.master.getSelectedSensorPosition());
@@ -152,8 +153,8 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
     // new ManualLiftControl().start();
-    lift.master.set(OI.driveStick.getRawAxis(1)/4);
-    lift.updateSlaves();
+    // lift.master.set(OI.driveStick.getRawAxis(1)/4);
+    // lift.updateSlaves();
     cargoIntake.motor.set(ControlMode.PercentOutput,OI.driveStick.getRawAxis(5)*0.6);
     cargoTransporter.cargoTransportMotor.set(ControlMode.PercentOutput,-OI.driveStick.getRawAxis(5));
     
