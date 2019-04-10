@@ -143,12 +143,12 @@ public class Drive extends Subsystem {
   private void fullSpeed(){
     // leftGearShifter.set(DoubleSolenoid.Value.kForward);
     // rightGearShifter.set(DoubleSolenoid.Value.kForward);
-    shifter.set(DoubleSolenoid.Value.kForward);
+    shifter.set(DoubleSolenoid.Value.kReverse);
   }
   private void slowSpeed(){
     // leftGearShifter.set(DoubleSolenoid.Value.kReverse);
     // rightGearShifter.set(DoubleSolenoid.Value.kReverse);
-    shifter.set(DoubleSolenoid.Value.kReverse);
+    shifter.set(DoubleSolenoid.Value.kForward);
   }
 
   @Override

@@ -76,7 +76,7 @@ public class RobotMap {
     ELEVATOR_RIGHT_MOTOR_ID = 51,
     //finish declaring elevator motor ids
 
-    ELEVATOR_ACCELERATION = 3100,
+    ELEVATOR_ACCELERATION = 3100*2,
     ELEVATOR_MAX_VELOCITY = 3100;
   ;
 

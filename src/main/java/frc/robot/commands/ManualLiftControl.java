@@ -18,7 +18,7 @@ public class ManualLiftControl extends Command {
   public ManualLiftControl() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.lift);
+    // requires(Robot.lift);
   }
 
   // Called just before this Command runs the first time
@@ -37,7 +37,7 @@ public class ManualLiftControl extends Command {
     //   Robot.lift.slave.setInverted(false);
     // }
     // Robot.lift.master.set(Math.abs(OI.driveStick.getRawAxis(1))*1/10);
-    Robot.lift.master.set(OI.driveStick.getRawAxis(1)*1/10);
+    // Robot.lift.master.set(OI.driveStick.getRawAxis(1)*1/10);
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -18,6 +18,7 @@ import frc.robot.commands.CargoShooter_Start;
 import frc.robot.commands.CargoShooter_Stop;
 import frc.robot.commands.CargoTransporter_Stop;
 import frc.robot.commands.Cargo_Transporter_Start;
+import frc.robot.commands.ExtendHatch;
 import frc.robot.commands.SwitchDriveGear;
 import frc.robot.commands.ToggleDirection;
 import frc.robot.subsystems.Drive;
@@ -26,6 +27,7 @@ import frc.robot.commands.ForceCargoShoot;
 import frc.robot.commands.StopFollowingLine;
 import frc.robot.commands.ShootHatch;
 import frc.robot.commands.IntakeCargo;
+import frc.robot.commands.RetractHatch;
 import frc.robot.commands.StopIntake;
 // import frc.robot.commands.ToggleLift;
 import frc.robot.commands.SetElevatorHeight;
@@ -81,8 +83,11 @@ public class OI {
     toggleDirection.whenPressed(new ToggleDirection());
     //switch the direction the robot considers forward
 
-    hatchButton.whenPressed(new ShootHatch());//shoot the hatch when the button is pressed
-    secondaryShootHatch.whenPressed(new ShootHatch());
+    // hatchButton.whenPressed(new ShootHatch());//shoot the hatch when the button is pressed
+    hatchButton.whenPressed(new ExtendHatch());
+    hatchButton.whenReleased(new RetractHatch());
+    secondaryShootHatch.whenPressed(new ExtendHatch());
+    secondaryShootHatch.whenReleased(new RetractHatch());
 
     //cargo shooter buttons
     // cargoIntake.whenPressed(new IntakeCargo()); //TODO: Put these back eventually

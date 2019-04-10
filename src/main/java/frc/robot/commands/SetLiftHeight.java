@@ -15,7 +15,7 @@ public class SetLiftHeight extends Command {
   public SetLiftHeight(int desiredHeight) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.lift);
+    // requires(Robot.lift);
     desHeight = desiredHeight;
   }
 
@@ -28,7 +28,7 @@ public class SetLiftHeight extends Command {
   @Override
   protected void execute() {
     System.out.println("Setting lift to to: "+desHeight);
-    Robot.lift.setTicks(desHeight);
+    // Robot.lift.setTicks(desHeight);
   }
 
   // Make this return true when this Command no longer needs to run execute()
