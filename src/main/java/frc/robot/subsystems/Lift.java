@@ -23,9 +23,11 @@ public class Lift extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public WPI_TalonSRX master,slave;
+  public static final double LIFT_DOWN_SPEED = -1.0;
+  public static final double LIFT_UP_SPEED = 1.0;
   public Lift() {
     master = new WPI_TalonSRX(RobotMap.LIFT_LEFT_MOTOR_ID);
-    slave = new WPI_TalonSRX(RobotMap.LIFT_RIGHT_MOTOR_ID);
+    // slave = new WPI_TalonSRX(RobotMap.LIFT_RIGHT_MOTOR_ID);
     //create talons
     // master.configFactoryDefault();
     // slave.configFactoryDefault();
@@ -56,7 +58,7 @@ public class Lift extends Subsystem {
   }
 
   public void updateSlaves(){
-    slave.set(ControlMode.PercentOutput,master.getMotorOutputPercent()*0.60);
+    // slave.set(ControlMode.PercentOutput,master.getMotorOutputPercent());
   }
 
   @Override

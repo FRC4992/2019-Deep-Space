@@ -27,8 +27,11 @@ import frc.robot.commands.ForceCargoShoot;
 import frc.robot.commands.StopFollowingLine;
 import frc.robot.commands.ShootHatch;
 import frc.robot.commands.IntakeCargo;
+import frc.robot.commands.LiftDown;
+import frc.robot.commands.LiftUp;
 import frc.robot.commands.RetractHatch;
 import frc.robot.commands.StopIntake;
+import frc.robot.commands.StopLift;
 // import frc.robot.commands.ToggleLift;
 import frc.robot.commands.SetElevatorHeight;
 // import frc.robot.commands.SetGamePiece;
@@ -73,12 +76,24 @@ public class OI {
   public static Button cargoLoading = new JoystickButton(driver2,12);
   public static Button secondaryCargoIntake = new JoystickButton(driver2,8);
   public static Button secondaryShootCargo = new JoystickButton(driver2,16);
+  public static Button liftDown = new JoystickButton(driver2,10);
+  public static Button liftUp = new JoystickButton(driver2,11);
   public OI(){
     driveFullSpeed.whenPressed(new SwitchDriveGear(Drive.FULL_SPEED));
     driveSlowSpeed.whenPressed(new SwitchDriveGear(Drive.SLOW_SPEED));
     //gear switcher buttons
-        followLineButton.whenPressed(new FollowLine());
-        followLineButton.whenReleased(new StopFollowingLine());
+
+
+    liftDown.whileHeld(new LiftDown());
+    liftDown.whenReleased(new StopLift());
+
+    liftUp.whileHeld(new LiftUp());
+    liftUp.whenReleased(new StopLift());
+
+
+
+    followLineButton.whenPressed(new FollowLine());
+    followLineButton.whenReleased(new StopFollowingLine());
         //follow a line while the button is pressed
     toggleDirection.whenPressed(new ToggleDirection());
     //switch the direction the robot considers forward

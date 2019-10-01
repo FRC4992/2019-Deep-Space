@@ -7,21 +7,17 @@
 
 package frc.robot.commands;
 
-import java.util.Arrays;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import frc.robot.OI;
 import frc.robot.Robot;
-import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Lift;
 
-public class ArcadeDrive extends Command {
-  DifferentialDrive drive;
-  public ArcadeDrive(DifferentialDrive drive) {
+public class LiftUp extends Command {
+  public LiftUp() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.drive);
-    this.drive = drive;
+    requires((Robot.lift));
   }
 
   // Called just before this Command runs the first time
@@ -32,31 +28,13 @@ public class ArcadeDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(Robot.drive.followingLine){
-      drive.arcadeDrive(Robot.drive.driveVals[1], -Robot.drive.driveVals[0]);
-      // System.out.println("using vals: "+Arrays.toString(Robot.drive.driveVals));
-    }else{
-      // Robot.drive.driveValues[0] = 0;
-      // Robot.drive.driveValues[1] = 0;
-      int direction = (OI.driveStick.getRawAxis(0)>0)? 1:-1;
-      drive.arcadeDrive(-OI.driveStick.getRawAxis(1)*Robot.drive.directionMultiplier, direction*Math.pow(OI.driveStick.getRawAxis(0),2));
-      // System.out.println("reg drive");
-    }
-
-    switch(OI.driveStick.getPOV()){
-      case 0://up on the dpad
-        Robot.drive.setSpeed(Drive.FULL_SPEED);//go full speed
-      break;
-      case 180://down on the dpad
-        Robot.drive.setSpeed(Drive.SLOW_SPEED);//go slow speed
-      break;
-    }
+    Robot.lift.master.set(ControlMode.PercentOutput,Lift.LIFT_UP_SPEED);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true

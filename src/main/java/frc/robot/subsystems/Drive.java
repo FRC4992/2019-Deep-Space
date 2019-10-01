@@ -10,9 +10,11 @@ package frc.robot.subsystems;
 // import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SPI;
@@ -68,15 +70,24 @@ public class Drive extends Subsystem {
     rightLine = new DigitalInput(RobotMap.RIGHT_LINE_SENSOR_ID);
     //finish declaring line sensors
     navx = new AHRS(SPI.Port.kMXP);
+    
   }
 
   public void setSpeed(int speedValue){
     switch(speedValue){
       case FULL_SPEED:
         fullSpeed();
+        frontLeft.setIdleMode(IdleMode.kCoast);
+        frontRight.setIdleMode(IdleMode.kCoast);
+        backLeft.setIdleMode(IdleMode.kCoast);
+        backRight.setIdleMode(IdleMode.kCoast);
       break;
       case SLOW_SPEED:
         slowSpeed();
+        frontLeft.setIdleMode(IdleMode.kBrake);
+        frontRight.setIdleMode(IdleMode.kBrake);
+        backLeft.setIdleMode(IdleMode.kBrake);
+        backRight.setIdleMode(IdleMode.kBrake);
       break;
     }
   }

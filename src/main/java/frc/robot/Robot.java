@@ -10,6 +10,7 @@ package frc.robot;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.subsystems.Drive;
@@ -43,7 +44,8 @@ public class Robot extends TimedRobot {
   public static CargoShooter cargoShooter = new CargoShooter();
   public static CargoTransporter cargoTransporter = new CargoTransporter();
   public static Hatch hatchShooter = new Hatch();
-  // public static Lift lift = new Lift();
+  Compressor compressor = new Compressor();
+  public static Lift lift = new Lift();
   public static Elevator elevator = new Elevator();
 
   /**
@@ -72,6 +74,7 @@ public class Robot extends TimedRobot {
     // System.out.println(elevator.master.getSelectedSensorPosition());
     // System.out.println("P: "+drive.getLinePos());
     drive.getLinePos();
+    SmartDashboard.putBoolean("Pressure Switch",compressor.getPressureSwitchValue());
   }
 
   /**
@@ -110,6 +113,8 @@ public class Robot extends TimedRobot {
      */
 
     // schedule the autonomous command (example)
+    elevator.master.setSelectedSensorPosition(0);
+    drive.setSpeed(Drive.SLOW_SPEED);
   }
 
   /**
@@ -123,7 +128,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     // lift.master.setSelectedSensorPosition(0);
-    elevator.master.setSelectedSensorPosition(0);
+    // elevator.master.setSelectedSensorPosition(0);
   }
 
   /**
@@ -135,9 +140,10 @@ public class Robot extends TimedRobot {
     // if(!drive.followingLine){
     //   new ArcadeDrive(drive.drive);
     // }
-    // lift.updateSlaves();
+    lift.updateSlaves();
     // SmartDashboard.putNumber("Elevator Encoder", elevator.master.getSelectedSensorPosition());
     elevator.updateSlave();
+    SmartDashboard.putNumber("Hatch Encoder", hatchShooter.ultrasonic.getRangeInches());
     // System.out.println(elevator.master.getSelectedSensorPosition());
     // System.out.println("Lift Value: "+lift.master.getSelectedSensorPosition());
   }

@@ -25,8 +25,8 @@ public class CargoShooterIntake_Start extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.cargoShooter.leftMotor.set(-0.25);
-    Robot.cargoShooter.rightMotor.set(0.25);
+    Robot.cargoShooter.leftMotor.set(0.25);
+    Robot.cargoShooter.rightMotor.set(-0.25);
   }
 
   // Make this return true when this Command no longer needs to run execute()

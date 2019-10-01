@@ -29,10 +29,10 @@ public class Hatch extends Subsystem {
   }
 
   public void extend(){
-    piston.set(DoubleSolenoid.Value.kForward);
+    piston.set(DoubleSolenoid.Value.kReverse);
   }
   public void retract(){
-    piston.set(DoubleSolenoid.Value.kReverse);
+    piston.set(DoubleSolenoid.Value.kForward);
   }
 
   public double getDistance(){

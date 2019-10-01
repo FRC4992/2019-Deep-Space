@@ -20,7 +20,11 @@ public class ExtendHatch extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.hatchShooter.extend();
+    // if(Robot.hatchShooter.ultrasonic.getRangeInches()<36 && Robot.hatchShooter.ultrasonic.getRangeInches()!=0){
+      Robot.hatchShooter.extend();
+    // }els/e{
+      // Robot.hatchShooter.retract();
+    // }
   }
 
   // Called repeatedly when this Command is scheduled to run
